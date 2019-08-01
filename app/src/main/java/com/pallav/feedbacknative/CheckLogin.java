@@ -128,7 +128,8 @@ public class CheckLogin extends AppCompatActivity {
                     Log.w("myTag",Boolean.toString(loginStatus));
                     if(result){
                         //Navigate to Home Screen
-                        Intent intObj = new Intent(CheckLogin.this,MainActivity.class);
+                        Intent intObj = new Intent(CheckLogin.this,MyFeedbackActivity.class);
+                        intObj.putExtra("Username", editTextUsername);
                         startActivity(intObj);
                     }else{
                         //Set Error message
