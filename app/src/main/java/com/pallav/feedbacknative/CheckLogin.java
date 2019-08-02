@@ -1,11 +1,9 @@
 package com.pallav.feedbacknative;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.cert.TrustAnchor;
+import com.google.gson.*;
+import com.pallav.feedbacknative.Util.GetApi;
 
 public class CheckLogin extends AppCompatActivity {
 
@@ -32,6 +30,7 @@ public class CheckLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
+
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new
@@ -78,12 +77,15 @@ public class CheckLogin extends AppCompatActivity {
 
 
         public class AsyncCallWS extends AsyncTask<Void, Void, Boolean>
+
         {
                 @Override
                 protected Boolean doInBackground(Void... voids) {
                     //Call Web Method
+
                     loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");
                     return loginStatus;
+
                 }
 
 
@@ -131,6 +133,7 @@ public class CheckLogin extends AppCompatActivity {
                         Intent intObj = new Intent(CheckLogin.this,MyFeedbackActivity.class);
                         intObj.putExtra("Username", editTextUsername);
                         startActivity(intObj);
+
                     }else{
                         //Set Error message
                         statusTV.setText("Login Failed, try again");
