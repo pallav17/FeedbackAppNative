@@ -4,6 +4,8 @@ import android.icu.util.RangeValueIterator;
 import android.net.Uri;
 import android.util.Log;
 
+import com.pallav.feedbacknative.LoginWebservice;
+
 import org.json.JSONArray;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -21,6 +23,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class GetApi {
 
     private static String NAMESPACE = "http://tempuri.org/";
@@ -29,27 +32,30 @@ public class GetApi {
     //SOAP Action URI again Namespace + Web method name
     private static String SOAP_ACTION = "http://tempuri.org/";
     public static String responseJSON;
-
+   //static SoapSerializationEnvelope envelope;
 
 
 
 
     public static String invokeJSONWS(String methName) {
         // Create request
-        SoapObject request = new SoapObject(NAMESPACE, methName);
+        SoapObject request = new SoapObject(NAMESPACE,methName);
         // Property which holds input parameters
-        PropertyInfo paramPI = new PropertyInfo();
+       /* PropertyInfo paramPI = new PropertyInfo();
         // Set Name
         // Set dataType
         paramPI.setType(String.class);
         // Add the property to request object
-        request.addProperty(paramPI);
+        request.addProperty(paramPI);*/
         // Create envelope
+
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                SoapEnvelope.VER11);
+           SoapEnvelope.VER11);
         envelope.dotNet = true;
         // Set output SOAP object
         envelope.setOutputSoapObject(request);
+        envelope.headerOut = new Element[1];
+        envelope.headerOut[0] = LoginWebservice.buildAuthHeader();
         // Create HTTP call object
         HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 

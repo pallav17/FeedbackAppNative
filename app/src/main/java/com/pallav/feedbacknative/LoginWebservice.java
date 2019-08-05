@@ -2,16 +2,25 @@ package com.pallav.feedbacknative;
 
 import android.util.Log;
 
+import com.pallav.feedbacknative.Util.HeaderProperty;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import org.kxml2.kdom.Node;
+import org.kxml2.kdom.Element;
+
+
+
 
 public class LoginWebservice {
         //Namespace of the Webservice - can be found in WSDL
         private static String NAMESPACE = "http://tempuri.org/";
+
+
         //Webservice URL - WSDL File location
         private static String URL = "http://www.as-mexico.com.mx/feedback/Webservice1.asmx?WSDL";//Make sure you changed IP address
         //SOAP Action URI again Namespace + Web method name
@@ -46,6 +55,8 @@ public class LoginWebservice {
             envelope.dotNet = true;
             // Set output SOAP object
             envelope.setOutputSoapObject(request);
+
+
             // Create HTTP call object
             HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 
@@ -66,5 +77,14 @@ public class LoginWebservice {
             //Return booleam to calling object
             return loginStatus;
         }
+
+    public static Element buildAuthHeader() {
+        Element h = new Element().createElement(NAMESPACE, "AuthHeader");
+        Element username = new Element().createElement(NAMESPACE, "Email");
+//        username.addChild(Node.TEXT, username);
+     //   h.addChild(Node.ELEMENT, username);
+        return h;
+    }
+
     }
 
