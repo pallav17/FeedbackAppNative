@@ -17,6 +17,7 @@ import org.kxml2.kdom.Element;
 
 
 public class LoginWebservice {
+
         //Namespace of the Webservice - can be found in WSDL
         private static String NAMESPACE = "http://tempuri.org/";
 
@@ -28,8 +29,10 @@ public class LoginWebservice {
 
         public static boolean invokeLoginWS(String userName,String passWord, String webMethName) {
             boolean loginStatus = false;
+            boolean result = false;
+
             // Create request
-            SoapObject request = new SoapObject(NAMESPACE, webMethName);
+            SoapObject loginRequest = new SoapObject(NAMESPACE, webMethName);
             // Property which holds input parameters
             PropertyInfo unamePI = new PropertyInfo();
             PropertyInfo passPI = new PropertyInfo();
@@ -40,7 +43,7 @@ public class LoginWebservice {
             // Set dataType
             unamePI.setType(String.class);
             // Add the property to request object
-            request.addProperty(unamePI);
+            loginRequest.addProperty(unamePI);
             //Set Password
             passPI.setName("Password");
             //Set dataType
@@ -48,8 +51,21 @@ public class LoginWebservice {
             //Set dataType
             passPI.setType(String.class);
             //Add the property to request object
-            request.addProperty(passPI);
-            // Create envelope
+            loginRequest.addProperty(passPI);
+
+          result = invokeApi(loginRequest,webMethName);
+
+
+            return result;
+
+
+        }
+
+
+        public static boolean invokeApi(SoapObject request, String webMethName)
+
+        {
+            boolean responseStatus = false;
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                     SoapEnvelope.VER11);
             envelope.dotNet = true;
@@ -66,25 +82,20 @@ public class LoginWebservice {
                 // Get the response
                 SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
                 // Assign it to  boolean variable variable
-                loginStatus = Boolean.parseBoolean(response.toString());
-                Log.w("LoginStatuslog",Boolean.toString(loginStatus));
+                responseStatus = Boolean.parseBoolean(response.toString());
+                Log.w("ResponseStatuslog",Boolean.toString(responseStatus));
 
             } catch (Exception e) {
                 //Assign Error Status true in static variable 'errored'
-               // CheckDNLoginActivity.errored = true;
+                // CheckDNLoginActivity.errored = true;
                 e.printStackTrace();
             }
             //Return booleam to calling object
-            return loginStatus;
+            return responseStatus;
         }
 
-    public static Element buildAuthHeader() {
-        Element h = new Element().createElement(NAMESPACE, "AuthHeader");
-        Element username = new Element().createElement(NAMESPACE, "Email");
-//        username.addChild(Node.TEXT, username);
-     //   h.addChild(Node.ELEMENT, username);
-        return h;
-    }
 
-    }
+        }
+
+
 

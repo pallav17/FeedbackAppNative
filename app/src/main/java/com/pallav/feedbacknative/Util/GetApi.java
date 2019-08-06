@@ -54,8 +54,8 @@ public class GetApi {
         envelope.dotNet = true;
         // Set output SOAP object
         envelope.setOutputSoapObject(request);
-        envelope.headerOut = new Element[1];
-        envelope.headerOut[0] = LoginWebservice.buildAuthHeader();
+       // envelope.headerOut = new Element[1];
+       // envelope.headerOut[0] = LoginWebservice.buildAuthHeader();
         // Create HTTP call object
         HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 
