@@ -3,9 +3,11 @@ package com.pallav.feedbacknative;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.gson.*;
 import com.pallav.feedbacknative.Util.GetApi;
+import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
 public class CheckLogin extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,7 +25,6 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     TextView statusTV;
     EditText userNameET, passWordET;
     ProgressBar webservicePG;
-    String editTextUsername;
     boolean loginStatus;
     String editTextPassword;
 
@@ -30,6 +32,9 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
     private void initSetup() {
         btn_create_an_account = (Button) findViewById(R.id.btn_create_an_account);
+        userNameET = (EditText) findViewById(R.id.editText1);
+        passWordET = (EditText) findViewById(R.id.editText2);
+        webservicePG = (ProgressBar) findViewById(R.id.progressBar1);
     }
 
     @Override
@@ -40,28 +45,27 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         initSetup();
         IBAction();
 
+        setUserPreferences();
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         //Name Text control
-        userNameET = (EditText) findViewById(R.id.editText1);
-        passWordET = (EditText) findViewById(R.id.editText2);
+
         //Display Text control
         statusTV = (TextView) findViewById(R.id.tv_result);
         //Button to trigger web service invocation
         b = (Button) findViewById(R.id.button1);
         //Display progress bar until web service invocation completes
-        webservicePG = (ProgressBar) findViewById(R.id.progressBar1);
         //Button Click Listener
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Check if text controls are not empty
                 if (userNameET.getText().length() != 0 && userNameET.getText().toString() != "") {
                     if (passWordET.getText().length() != 0 && passWordET.getText().toString() != "") {
-                        editTextUsername = userNameET.getText().toString();
-                        editTextPassword = passWordET.getText().toString();
+
                         statusTV.setText("");
                         //Create instance for AsyncCallWS
                         AsyncCallWS task = new AsyncCallWS();
@@ -78,6 +82,25 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
                 }
             }
         });
+    }
+
+    private void setUserPreferences() {
+        SetSharedPreferences setSharedPreferences = new SetSharedPreferences();
+        if (setSharedPreferences.getBool(CheckLogin.this, "isLoggedIn")) {
+            userNameET.setText(setSharedPreferences.getValue(CheckLogin.this, "Username"));
+            passWordET.setText(setSharedPreferences.getValue(CheckLogin.this, "Password"));
+
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    /* Create an Intent that will start the Menu-Activity. */
+                    AsyncCallWS task = new AsyncCallWS();
+                    //Call execute
+                    task.execute();
+                }
+            }, 300);
+
+        }
     }
 
     private void IBAction() {
@@ -100,7 +123,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         protected Boolean doInBackground(Void... voids) {
             //Call Web Method
 
-            loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");
+            loginStatus = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(),"getLogin");
             return loginStatus;
 
         }
@@ -148,8 +171,13 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             if(result){
                 //Navigate to Home Screen
                 Intent intObj = new Intent(CheckLogin.this,MyFeedbackActivity.class);
-                intObj.putExtra("Username", editTextUsername);
+                intObj.putExtra("Username", userNameET.getText().toString());
                 startActivity(intObj);
+                finish();
+
+                new SetSharedPreferences().setValue(CheckLogin.this, "Username", userNameET.getText().toString());
+                new SetSharedPreferences().setValue(CheckLogin.this, "Password" ,passWordET.getText().toString());
+                new SetSharedPreferences().setBool(CheckLogin.this, "isLoggedIn" , true);
 
             }else{
                 //Set Error message

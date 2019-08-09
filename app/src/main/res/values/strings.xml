@@ -3,4 +3,10 @@
     <string name="title_home">Send Feedback</string>
     <string name="title_dashboard">My Feedbacks</string>
     <string name="title_notifications">Profile</string>
+    <string name="title_logout">Log out</string>
+
+
+    <string name="base_url">http://dummy.restapiexample.com/api/v1/</string>
+    <string name="employee_url">employee/</string>
+
 </resources>
