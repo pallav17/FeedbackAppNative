@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,20 +13,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.pallav.feedbacknative.Adapter.MyAdapter;
+import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
 import com.pallav.feedbacknative.Util.GetApi;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,14 +46,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                 case R.id.navigation_home:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this,InsertFeedbackActivity.class);
                     startActivity(InsertFeedback);
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
 
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
             return false;
@@ -72,7 +63,6 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
         setContentView(R.layout.myfeedbacks);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //webView = (WebView)findViewById(R.id.webview);
@@ -169,7 +159,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
         // specify an adapter (see also next example)
 
-        mAdapter = new MyAdapter(arrData);
+        mAdapter = new FeedbackListAdapter(arrData);
         recyclerView.setAdapter(mAdapter);
     }
 

@@ -55,7 +55,8 @@
         android:id="@+id/ratingBar"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:numStars="5"
+        android:layout_below="@+id/txt_suggestion"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/txt_suggestion"/>
+        android:numStars="5"
+        android:rating="3.2" />
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.pallav.feedbacknative.Adapter;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.pallav.feedbacknative.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.MyViewHolder> {
     private ArrayList<HashMap<String, String>> arrData;
 
     // Provide a reference to the views for each data item
@@ -28,14 +27,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ArrayList<HashMap<String, String>> arrData) {
+    public FeedbackListAdapter(ArrayList<HashMap<String, String>> arrData) {
         this.arrData = arrData;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public FeedbackListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                               int viewType) {
         // create a new view
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.my_text_view, null);
 

@@ -4,110 +4,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:background="@android:color/background_light"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Provide a Feedback"
-        android:textColor="#00893d"
-        android:textSize="33dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/full_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:background="@android:color/background_light"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/your_full_name"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Provide a Feedback"
+            android:textColor="#00893d"
+            android:textSize="33dp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/full_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Person Name"
-            android:inputType="textPersonName" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/email_address"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/your_full_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Person Name"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/your_email_address"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_address"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/your_email_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Subject"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <TextView
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="left"
+            android:text="Ratings"
+            android:textSize="20sp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="right" />
+
+
+        <EditText
+            android:id="@+id/likes"
+
+            android:layout_width="fill_parent"
+            android:layout_height="138dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Subject"
-            android:inputType="textEmailAddress" />
-    </android.support.design.widget.TextInputLayout>
+            android:gravity="start|top"
+            android:hint="Things you Liked"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            android:id="@+id/suggestions"
+
+            android:layout_width="fill_parent"
+            android:layout_height="138dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Please suggest an improvement"
+            android:inputType="textMultiLine" />
 
 
 
-    <TextView
-        android:layout_width="77dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="left"
-        android:text="Ratings"
-        android:textSize="20sp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:gravity="right" />
-
-
-    <EditText
-        android:id="@+id/likes"
-
-        android:layout_width="fill_parent"
-        android:layout_height="138dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Things you Liked"
-        android:inputType="textMultiLine" />
-
-    <EditText
-        android:id="@+id/suggestions"
-
-        android:layout_width="fill_parent"
-        android:layout_height="138dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Please suggest an improvement"
-        android:inputType="textMultiLine" />
-
-
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="50dp"
-        android:background="#00893d"
-        android:text="Send"
-        android:textAllCaps="false"
-        android:textColor="#fff" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#00893d"
+            android:text="Send"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
 
 
 
 
-</LinearLayout>
+    </LinearLayout>
 
 </ScrollView>
