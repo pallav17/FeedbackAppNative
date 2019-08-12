@@ -2,15 +2,18 @@ package com.pallav.feedbacknative.Util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -24,9 +27,13 @@ public class Services {
     public interface webserviceAsync  {
         void getResponse(String url, JSONObject result, Object status,
                          webcallid callId);
+
+        void getResponseWithJsonArray(String url, JSONArray result, Object status,
+                         webcallid callId);
     }
     public static enum webcallid {
-        GET_EMP
+        GET_EMP,
+        GET_EMP_LIST
     }
     boolean IshowProgress = true;
     ProgressDialog process = null;
@@ -120,6 +127,60 @@ public class Services {
         }
 
         requestQueue.add(jsonObjReq);
+
+
+
+    }
+
+    public void sendRequestWithArrayRequest(final String Url,
+                            final Map<String, String> params,
+                            JSONObject jsonObject,
+                            final Map<String, String> header,
+                            final webcallid callId) {
+
+
+        RequestQueue requestQueue;
+
+        requestQueue = Volley.newRequestQueue(context);
+        if (IshowProgress)
+            process.show();
+
+        Response.Listener Relistener = new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                if (process != null && process.isShowing())
+                    process.dismiss();
+                if (listener != null)
+                    listener.getResponseWithJsonArray(Url, response, null, callId);
+            }
+        };
+
+        Response.ErrorListener Erlistener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (process != null && process.isShowing())
+                    process.dismiss();
+                if (listener != null)
+                    listener.getResponseWithJsonArray(Url, null, null, callId);
+            }
+        };
+
+        JsonArrayRequest jsonArrayRequest;
+        if(header!=null) {
+            jsonArrayRequest =  new JsonArrayRequest(Request.Method.GET, Url, null,
+                    Relistener,
+                    Erlistener
+            );
+        }else{
+            jsonArrayRequest =  new JsonArrayRequest(Request.Method.GET, Url, null,
+                    Relistener,
+                    Erlistener
+            );
+        }
+
+        requestQueue.add(jsonArrayRequest);
+
 
 
     }

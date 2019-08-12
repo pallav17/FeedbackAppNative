@@ -22,6 +22,7 @@ import com.pallav.feedbacknative.Util.GetApi;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,7 +45,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this,InsertFeedbackActivity.class);
+                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
                     startActivity(InsertFeedback);
                     return true;
                 case R.id.navigation_dashboard:
@@ -139,6 +140,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             setRecyclerView();
 
         }
+    }
+
+    @Override
+    public void getResponseWithJsonArray(String url, JSONArray result, Object status, Services.webcallid callId) {
+
     }
 
     private RecyclerView recyclerView;

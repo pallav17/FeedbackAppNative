@@ -8,5 +8,6 @@
 
     <string name="base_url">http://dummy.restapiexample.com/api/v1/</string>
     <string name="employee_url">employee/</string>
+    <string name="employees">employees</string>
 
 </resources>

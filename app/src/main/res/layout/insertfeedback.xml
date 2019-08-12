@@ -25,6 +25,8 @@
             android:id="@+id/full_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
             android:layout_marginTop="10dp">
 
             <EditText
@@ -33,6 +35,10 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Person Name"
+                android:editable="false"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
