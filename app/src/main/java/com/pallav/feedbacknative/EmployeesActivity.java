@@ -1,11 +1,21 @@
 package com.pallav.feedbacknative;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.pallav.feedbacknative.Adapter.EmpListAdapter;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
@@ -18,7 +28,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class EmployeesActivity extends AppCompatActivity implements Services.webserviceAsync {
+public class EmployeesActivity extends AppCompatActivity implements Services.webserviceAsync, SearchView.OnQueryTextListener
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         setContentView(R.layout.activity_employees);
 
         callWebServiceForGetEmployeesData();
+        setUpViews();
     }
 
     Services services;
@@ -50,8 +62,11 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     }
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private EmpListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SearchView tbMainSearch;
+
+
     ArrayList<HashMap<String, String>> arrData = new ArrayList<>();
 
     private void setRecyclerView() {
@@ -98,5 +113,41 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
             setRecyclerView();
 
         }
+    }
+
+
+    private void setUpViews() {
+        tbMainSearch = (SearchView)findViewById(R.id.searchView);
+        tbMainSearch.setOnQueryTextListener(this);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_search, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem mSearchmenuItem = menu.findItem(R.id.menu_toolbarsearch);
+        SearchView searchView = (SearchView) mSearchmenuItem.getActionView();
+        searchView.setQueryHint("enter Text");
+        searchView.setOnQueryTextListener(this  );
+        Log.d("TAG", "onCreateOptionsMenu: mSearchmenuItem->" + mSearchmenuItem.getActionView());
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        mAdapter.getFilter().filter(s);
+        return true;
+
     }
 }

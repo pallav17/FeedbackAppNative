@@ -3,6 +3,7 @@ package com.pallav.feedbacknative;
 import android.util.Log;
 
 import com.pallav.feedbacknative.Util.HeaderProperty;
+import com.pallav.feedbacknative.Util.Services;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -16,7 +17,7 @@ import org.kxml2.kdom.Element;
 
 
 
-public class LoginWebservice {
+public class LoginWebservice  {
 
         //Namespace of the Webservice - can be found in WSDL
         private static String NAMESPACE = "http://tempuri.org/";

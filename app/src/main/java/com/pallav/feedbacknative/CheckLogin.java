@@ -1,11 +1,14 @@
 package com.pallav.feedbacknative;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -28,10 +31,11 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     boolean loginStatus;
     String editTextPassword;
 
-    Button btn_create_an_account;
+    Button btn_create_an_account, btn_forgot_password;
 
     private void initSetup() {
         btn_create_an_account = (Button) findViewById(R.id.btn_create_an_account);
+        btn_forgot_password = (Button) findViewById(R.id.btn_forgot_password);
         userNameET = (EditText) findViewById(R.id.editText1);
         passWordET = (EditText) findViewById(R.id.editText2);
         webservicePG = (ProgressBar) findViewById(R.id.progressBar1);
@@ -105,6 +109,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
     private void IBAction() {
         btn_create_an_account.setOnClickListener(this);
+        btn_forgot_password.setOnClickListener(this);
     }
 
     @Override
@@ -113,7 +118,71 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         if (v == btn_create_an_account) {
             Intent i = new Intent(CheckLogin.this, RegistrationActivity.class);
             startActivity(i);
+        }else if (v == btn_forgot_password) {
+            alertForgotPassword();
         }
+    }
+
+    public void alertForgotPassword() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Forgot Password");
+        builder.setMessage("After click on send button we will send forgot link to your email.");
+        builder.setCancelable(false);
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertConfirmOTP();
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+    public void alertConfirmOTP() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter OTP");
+        builder.setMessage("Please enter OTP Received from EMail.");
+        builder.setCancelable(false);
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
+                startActivity(i);
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
     }
 
     public class AsyncCallWS extends AsyncTask<Void, Void, Boolean>

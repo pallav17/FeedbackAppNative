@@ -6,17 +6,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pallav.feedbacknative.InsertFeedbackActivity;
 import com.pallav.feedbacknative.R;
+import com.pallav.feedbacknative.Util.Constant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EmpListAdapter extends RecyclerView.Adapter<EmpListAdapter.MyViewHolder> {
     private ArrayList<HashMap<String, String>> arrData;
+    ArrayList<HashMap<String, String>> listFiltered;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -37,7 +40,7 @@ public class EmpListAdapter extends RecyclerView.Adapter<EmpListAdapter.MyViewHo
     public EmpListAdapter(Context context, ArrayList<HashMap<String, String>> arrData) {
         this.context = context;
         this.arrData = arrData;
-
+        this.listFiltered = arrData;
     }
 
     // Create new views (invoked by the layout manager)
@@ -56,12 +59,12 @@ public class EmpListAdapter extends RecyclerView.Adapter<EmpListAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(arrData.get(position).get("name"));
+        holder.textView.setText(listFiltered.get(position).get("name"));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, InsertFeedbackActivity.class);
-                i.putExtra("name", arrData.get(position).get("name"));
+                i.putExtra("name", listFiltered.get(position).get("name"));
                 context.startActivity(i);
             }
         });
@@ -70,6 +73,42 @@ public class EmpListAdapter extends RecyclerView.Adapter<EmpListAdapter.MyViewHo
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return arrData.size();
+        return listFiltered.size();
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    listFiltered = arrData;
+                } else {
+                    ArrayList<HashMap<String, String>> filteredList = new ArrayList<>();
+                    for (HashMap<String, String> row : arrData) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.get("name").toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    listFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listFiltered = (ArrayList<HashMap<String, String>>) filterResults.values;
+
+                // refresh the list with filtered data
+                notifyDataSetChanged();
+            }
+        };
     }
 }

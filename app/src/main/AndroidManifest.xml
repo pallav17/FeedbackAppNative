@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmployeesActivity"></activity>
+        <activity android:name=".UpdatePasswordActivity"></activity>
+        <activity android:name=".EmployeesActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".CheckLogin"
