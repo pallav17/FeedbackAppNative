@@ -186,7 +186,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 try {
                     data = NetworkUtil.getResponse(urls[0]);
-                    Log.d("Data coming innnnnn", " "+data);
+                    Log.d("Magaj ni maa fadai gayi", " "+data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
