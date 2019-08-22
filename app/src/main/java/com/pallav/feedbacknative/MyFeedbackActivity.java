@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
 import com.pallav.feedbacknative.Util.GetApi;
+import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
@@ -26,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,6 +37,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
     Gson gson = new Gson();
     String[] feedbacks;
+    URL url;
 
     private TextView mTextMessage;
 
@@ -45,7 +48,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
+                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this, InsertFeedbackActivity.class);
                     startActivity(InsertFeedback);
                     return true;
                 case R.id.navigation_dashboard:
@@ -71,11 +74,12 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         final String message = getintent.getStringExtra("Username");
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        /*AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
+        url = NetworkUtil.buildURL("http://www.as-mexico.com.mx/feedback/WebService1.asmx/TokenTest1DF?Email=shahpll@testing.com&Token=af9bce267343ad72bd6abe7aff58edf2");
+        AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
         //Call execute
-        task.execute();*/
+        task.execute(url);
 
-        callWebServiceForGetData();
+    ///    callWebServiceForGetData();
 
       /*  webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -169,15 +173,48 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         recyclerView.setAdapter(mAdapter);
     }
 
-    public class AsyncCallDisplayFeedback extends AsyncTask<Void, Void, Boolean> {
+    class AsyncCallDisplayFeedback extends AsyncTask<URL, Void, String> {
+
+
+        private String FirstName[];
+        private String LastName[];
             @Override
-            protected Boolean doInBackground(Void... voids) {
+            protected String doInBackground(URL... urls) {
                 //Call Web Method
-                GetApi.invokeJSONWS("GetFeedBackDetailNew");
-                return null;
+              //  GetApi.invokeJSONWS("GetFeedBackDetailNew");
+                String data = null;
 
+                try {
+                    data = NetworkUtil.getResponse(urls[0]);
+                    Log.d("Data coming innnnnn", " "+data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try{
+
+                    JSONArray jsonArray = new JSONArray(data);
+                    int arraylength = jsonArray.length();
+                    FirstName = new String[arraylength];
+                    LastName = new String[arraylength];
+                    // posterUrl = new String[arraylength];
+                    for(int i =0; i < arraylength ; i++)
+                    {
+                        JSONObject jobj1 = jsonArray.getJSONObject(i);
+                        JSONObject jobj2 = jsonArray.getJSONObject(i);
+
+                        // JSONObject jobj3 = jobj2.getJSONObject("")
+                        FirstName[i] = jobj1.getString("FirstName");
+                        LastName[i] = jobj2.getString("LastName");
+                        Log.w("First Name",FirstName[i]);
+                        Log.w("Last Name",LastName[i]);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.d("data", data);
+                return data;
+               // LoginWebservice.invokeDisplayFeedbackWS("pallav.shah@schaeffler.com","af9bce267343ad72bd6abe7aff58edf2","TokenTest1DF" );
                 //  Thread.sleep("1000.0");
-
             }
 
 
@@ -208,15 +245,15 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                     errored = false;
                 }*/
 
+        @Override
 
-            //Once WebService returns response
-            protected void onPostExecute(Void result) {
+            protected void onPostExecute(String result) {
                 //super.onPostExecute(result);
                 //gt.invokeJSONWS("GetFeedBackDetailNew");
-                feedbacks = gson.fromJson(GetApi.responseJSON, String[].class);
+              //  feedbacks = gson.fromJson(GetApi.responseJSON, String[].class);
                 //  Toast.makeText(getApplicationContext(), "No Response", Toast.LENGTH_LONG).show();
                 //Set Error message
-                Log.e("response", feedbacks.toString());
+             //   Log.e("response", feedbacks.toString());
             }
 
 
