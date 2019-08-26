@@ -20,9 +20,12 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textView;
+        public TextView feedback_sender;
         public MyViewHolder(View v) {
             super(v);
             textView = v.findViewById(R.id.full_name);
+            feedback_sender = v.findViewById(R.id.feedback_sender);
+
         }
     }
 
@@ -47,7 +50,9 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(arrData.get(position).get("name"));
+        holder.textView.setText(arrData.get(position).get("Subject"));
+        holder.textView.setText(arrData.get(position).get("FirstName"));
+
 
     }
 

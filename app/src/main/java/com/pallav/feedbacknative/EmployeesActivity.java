@@ -146,7 +146,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     @Override
     public boolean onQueryTextChange(String s) {
 
-        mAdapter.getFilter().filter(s);
+       // mAdapter.getFilter().filter(s);
         return true;
 
     }

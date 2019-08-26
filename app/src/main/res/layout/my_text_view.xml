@@ -23,11 +23,12 @@
         android:layout_margin="8dp"
         android:layout_toLeftOf="@+id/txt_date"/>
 
+
     <TextView
         android:id="@+id/txt_like"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Like: Text"
+        android:text="Like: Good"
         android:textSize="21dp"
         android:layout_margin="8dp"
         android:layout_below="@+id/full_name"/>
@@ -42,7 +43,7 @@
         android:layout_below="@+id/txt_like"/>
 
     <TextView
-        android:id="@+id/txt_name"
+        android:id="@+id/feedback_sender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="By Pallav"

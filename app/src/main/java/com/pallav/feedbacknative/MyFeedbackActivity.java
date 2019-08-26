@@ -48,7 +48,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this, InsertFeedbackActivity.class);
+                    Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
                     startActivity(InsertFeedback);
                     return true;
                 case R.id.navigation_dashboard:
@@ -178,6 +178,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
         private String FirstName[];
         private String LastName[];
+        private String Subject[];
             @Override
             protected String doInBackground(URL... urls) {
                 //Call Web Method
@@ -196,18 +197,23 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                     int arraylength = jsonArray.length();
                     FirstName = new String[arraylength];
                     LastName = new String[arraylength];
+                    Subject = new String[arraylength];
                     // posterUrl = new String[arraylength];
                     for(int i =0; i < arraylength ; i++)
                     {
                         JSONObject jobj1 = jsonArray.getJSONObject(i);
-                        JSONObject jobj2 = jsonArray.getJSONObject(i);
+                      //  JSONObject jobj1 = jsonArray.getJSONObject(i);
+                      //  JSONObject jobj3 = jsonArray.getJSONObject(i);
 
                         // JSONObject jobj3 = jobj2.getJSONObject("")
                         FirstName[i] = jobj1.getString("FirstName");
-                        LastName[i] = jobj2.getString("LastName");
+                        LastName[i] = jobj1.getString("LastName");
+                     Subject[i] = jobj1.getString("Subject");
                         Log.w("First Name",FirstName[i]);
                         Log.w("Last Name",LastName[i]);
+                        Log.w("Subject",Subject[i]);
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
