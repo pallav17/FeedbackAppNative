@@ -74,12 +74,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         final String message = getintent.getStringExtra("Username");
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        url = NetworkUtil.buildURL("http://www.as-mexico.com.mx/feedback/WebService1.asmx/TokenTest1DF?Email=shahpll@testing.com&Token=af9bce267343ad72bd6abe7aff58edf2");
+      /*  url = NetworkUtil.buildURL("http://www.as-mexico.com.mx/feedback/WebService1.asmx/TokenTest1DF?Email=shahpll@testing.com&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
-        //Call execute
-        task.execute(url);
+        task.execute(url);*/
 
-    ///    callWebServiceForGetData();
+     callWebServiceForGetData();
 
       /*  webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -105,7 +104,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     Services services;
     String userId;
     private void callWebServiceForGetData() {
-        userId = "18766";
+        userId = "71418";
         services = new Services(MyFeedbackActivity.this, null);
         services.isShowProgress(true);
         new Handler().postDelayed(new Runnable(){
@@ -135,8 +134,10 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             for (int i = 0; i < 100; i++) {
                 HashMap<String, String>map = new HashMap<>();
                 try {
-                    map.put("name", jsonObject.get("employee_name").toString());
-                } catch (JSONException e) {
+                  //  map.put("name", jsonObject.get("employee_name").toString());
+
+                    map.put("name","Feedback for Native App");
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 arrData.add(map);

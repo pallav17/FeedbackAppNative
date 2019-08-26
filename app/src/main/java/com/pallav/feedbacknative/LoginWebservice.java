@@ -135,6 +135,74 @@ public class LoginWebservice  {
 
     }
 
+
+    FirstName
+    LastName
+    Office
+    Email
+    Password
+    IsActive
+    IsDelete
+
+    public static boolean invokeSignupInsertUser(String  FirstName,String  LastName,String  Office,  String Email , String Password, String IsActive, String IsDelete, String webMethName)  {
+
+        boolean result = false;
+
+        // Create request
+        SoapObject InsertUserRequest = new SoapObject(NAMESPACE, webMethName);
+        // Property which holds input parameters
+        PropertyInfo FirstNamePI = new PropertyInfo();
+        PropertyInfo LastNamePI = new PropertyInfo();
+        PropertyInfo OfficePI = new PropertyInfo();
+        PropertyInfo EmailPI = new PropertyInfo();
+        PropertyInfo PasswordPI = new PropertyInfo();
+        PropertyInfo IsActivePI = new PropertyInfo();
+        PropertyInfo IsDeletePI = new PropertyInfo();
+
+
+        FirstNamePI.setName("FirstName");
+        FirstNamePI.setValue(FirstName);
+        FirstNamePI.setType(String.class);
+        InsertUserRequest.addProperty(FirstNamePI);
+
+        LastNamePI.setName("LastName");
+        LastNamePI.setValue(LastName);
+        LastNamePI.setType(String.class);
+        InsertUserRequest.addProperty(LastNamePI);
+
+        OfficePI.setName("Office");
+        OfficePI.setValue(Office);
+        OfficePI.setType(String.class);
+        InsertUserRequest.addProperty(OfficePI);
+
+        EmailPI.setName("Email");
+        EmailPI.setValue(Email);
+        EmailPI.setType(String.class);
+        InsertUserRequest.addProperty(EmailPI);
+
+
+        PasswordPI.setName("Password");
+        PasswordPI.setValue(Password);
+        PasswordPI.setType(String.class);
+        InsertUserRequest.addProperty(PasswordPI);
+
+        IsActivePI.setName("IsActive");
+        IsActivePI.setValue(Email);
+        IsActivePI.setType(String.class);
+        InsertUserRequest.addProperty(IsActivePI);
+
+        IsDeletePI.setName("IsDelete");
+        IsDeletePI.setValue(IsDelete);
+        IsDeletePI.setType(String.class);
+        InsertUserRequest.addProperty(IsDeletePI);
+
+        result = invokeApi(InsertUserRequest,webMethName);
+
+        return result;
+
+
+    }
+
     public  static String invokeDisplayFeedbackWS( String Email, String Token , String webMethName)    {
 
         boolean result = false;

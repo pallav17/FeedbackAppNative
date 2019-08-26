@@ -50,8 +50,8 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(arrData.get(position).get("Subject"));
-        holder.textView.setText(arrData.get(position).get("FirstName"));
+        holder.textView.setText(arrData.get(position).get("name"));
+       // holder.textView.setText(arrData.get(position).get("FirstName"));
 
 
     }
