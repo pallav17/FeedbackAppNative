@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.pallav.feedbacknative.R;
@@ -19,12 +20,17 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
-        public TextView feedback_sender;
+        public TextView txtSubject, txt_like, txt_suggestion, feedback_sender, txt_date;
+        public RatingBar ratingBar;
         public MyViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.full_name);
+            txtSubject = v.findViewById(R.id.txtSubject);
+            txt_like = v.findViewById(R.id.txt_like);
+            txt_suggestion = v.findViewById(R.id.txt_suggestion);
             feedback_sender = v.findViewById(R.id.feedback_sender);
+            txt_date = v.findViewById(R.id.txt_date);
+
+            ratingBar = v.findViewById(R.id.ratingBar);
 
         }
     }
@@ -50,10 +56,14 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(arrData.get(position).get("name"));
+        holder.txtSubject.setText(arrData.get(position).get("Subject"));
        // holder.textView.setText(arrData.get(position).get("FirstName"));
+        holder.txt_like.setText(arrData.get(position).get("Description"));
+        holder.txt_suggestion.setText(arrData.get(position).get("Suggestion"));
+        holder.feedback_sender.setText(arrData.get(position).get("FirstName") + " " + arrData.get(position).get("LastName"));
+        holder.txt_date.setText(arrData.get(position).get("FeedbackDate"));
 
-
+        holder.ratingBar.setRating(Float.valueOf(arrData.get(position).get("Rating")));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

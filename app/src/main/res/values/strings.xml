@@ -10,4 +10,5 @@
     <string name="employee_url">employee/</string>
     <string name="employees">employees</string>
 
+    <string name="base_SOAP">http://www.as-mexico.com.mx/feedback/WebService1.asmx/</string>
 </resources>

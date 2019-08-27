@@ -2,6 +2,7 @@ package com.pallav.feedbacknative;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,15 @@ import android.widget.ListView;
 
 import com.pallav.feedbacknative.Adapter.EmpListAdapter;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
+import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
+import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,7 +40,13 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employees);
 
-        callWebServiceForGetEmployeesData();
+        //callWebServiceForGetEmployeesData();
+        URL url = NetworkUtil.buildURL(getResources().getString(R.string.base_SOAP)+ "TokenTest2AU?Email="
+                + new SetSharedPreferences().getValue(EmployeesActivity.this, "Username")
+                + "&Token=af9bce267343ad72bd6abe7aff58edf2");
+        AsyncCallGetEMPList  task = new AsyncCallGetEMPList();
+        task.execute(url);
+
         setUpViews();
     }
 
@@ -115,6 +125,74 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         }
     }
 
+    class AsyncCallGetEMPList extends AsyncTask<URL, Void, String> {
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            //Call Web Method
+            //  GetApi.invokeJSONWS("GetFeedBackDetailNew");
+            String data = null;
+
+            try {
+                data = NetworkUtil.getResponse(urls[0]);
+                Log.d("Magaj ni patar fadai gayi", " "+data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Log.d("data", data);
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try{
+
+                JSONArray jsonArray = new JSONArray(result);
+                arrData = new ArrayList<>();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    HashMap<String, String> map = new HashMap<>();
+                    try {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        map.put("name", jsonObject.get("FirstName").toString() + " " + jsonObject.get("LastName").toString());
+                        map.put("FirstName", jsonObject.get("FirstName").toString());
+                        map.put("LastName", jsonObject.get("LastName").toString());
+                        map.put("Email", jsonObject.get("Email").toString());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    arrData.add(map);
+                }
+                setRecyclerView();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            setRecyclerView();
+        }
+
+
+
+
+        @Override
+        //Make Progress Bar visible
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //  webservicePG.setVisibility(View.VISIBLE);
+            /*loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");*/
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+
+
+        }
+    }
 
     private void setUpViews() {
         tbMainSearch = (SearchView)findViewById(R.id.searchView);
@@ -146,7 +224,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     @Override
     public boolean onQueryTextChange(String s) {
 
-       // mAdapter.getFilter().filter(s);
+       mAdapter.getFilter().filter(s);
         return true;
 
     }

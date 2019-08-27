@@ -65,6 +65,7 @@ public class EmpListAdapter extends RecyclerView.Adapter<EmpListAdapter.MyViewHo
             public void onClick(View v) {
                 Intent i = new Intent(context, InsertFeedbackActivity.class);
                 i.putExtra("name", listFiltered.get(position).get("name"));
+                i.putExtra("Email", listFiltered.get(position).get("Email"));
                 context.startActivity(i);
             }
         });

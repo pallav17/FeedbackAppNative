@@ -74,11 +74,13 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         final String message = getintent.getStringExtra("Username");
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-      /*  url = NetworkUtil.buildURL("http://www.as-mexico.com.mx/feedback/WebService1.asmx/TokenTest1DF?Email=shahpll@testing.com&Token=af9bce267343ad72bd6abe7aff58edf2");
+        url = NetworkUtil.buildURL(getResources().getString(R.string.base_SOAP)+ "TokenTest1DF?Email="
+                + new SetSharedPreferences().getValue(MyFeedbackActivity.this, "Username")
+                + "&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
-        task.execute(url);*/
+        task.execute(url);
 
-     callWebServiceForGetData();
+    // callWebServiceForGetData();
 
       /*  webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -127,7 +129,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     public void getResponse(String url, JSONObject result, Object status, Services.webcallid callId) {
         Log.e("result", ""+result);
 
-        if (callId == Services.webcallid.GET_EMP && result != null) {
+        /*if (callId == Services.webcallid.GET_EMP && result != null) {
 
             JSONObject jsonObject = result;
 
@@ -144,7 +146,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             }
             setRecyclerView();
 
-        }
+        }*/
     }
 
     @Override
@@ -155,7 +157,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    ArrayList<HashMap<String, String>> arrData = new ArrayList<>();
+    ArrayList<HashMap<String, String>> arrData ;
 
     private void setRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -188,13 +190,33 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 try {
                     data = NetworkUtil.getResponse(urls[0]);
-                    Log.d("Magaj ni maa fadai gayi", " "+data);
+                    Log.d("Magaj ni patar fadai gayi", " "+data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                try{
+               /* try{
 
                     JSONArray jsonArray = new JSONArray(data);
+                    ArrayList<HashMap<String, String>> arrData = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        HashMap<String, String> map = new HashMap<>();
+                        try {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            map.put("Subject", jsonObject.get("Subject").toString());
+                            map.put("Description", jsonObject.get("Description").toString());
+                            map.put("Suggestion", jsonObject.get("Suggestion").toString());
+                            map.put("Rating", jsonObject.get("Rating").toString());
+                            map.put("FirstName", jsonObject.get("FirstName").toString());
+                            map.put("LastName", jsonObject.get("LastName").toString());
+                            map.put("FeedbackDate", jsonObject.get("FeedbackDate").toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        arrData.add(map);
+                    }
+
                     int arraylength = jsonArray.length();
                     FirstName = new String[arraylength];
                     LastName = new String[arraylength];
@@ -213,11 +235,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                         Log.w("First Name",FirstName[i]);
                         Log.w("Last Name",LastName[i]);
                         Log.w("Subject",Subject[i]);
-                    }
+                    }*/
 
-                } catch (JSONException e) {
+               /* } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
                 Log.d("data", data);
                 return data;
                // LoginWebservice.invokeDisplayFeedbackWS("pallav.shah@schaeffler.com","af9bce267343ad72bd6abe7aff58edf2","TokenTest1DF" );
@@ -255,12 +277,35 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         @Override
 
             protected void onPostExecute(String result) {
-                //super.onPostExecute(result);
-                //gt.invokeJSONWS("GetFeedBackDetailNew");
-              //  feedbacks = gson.fromJson(GetApi.responseJSON, String[].class);
-                //  Toast.makeText(getApplicationContext(), "No Response", Toast.LENGTH_LONG).show();
-                //Set Error message
-             //   Log.e("response", feedbacks.toString());
+
+            try{
+
+                JSONArray jsonArray = new JSONArray(result);
+                arrData = new ArrayList<>();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    HashMap<String, String> map = new HashMap<>();
+                    try {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        map.put("Subject", jsonObject.get("Subject").toString());
+                        map.put("Description", jsonObject.get("Description").toString());
+                        map.put("Suggestion", jsonObject.get("Suggestion").toString());
+                        map.put("Rating", jsonObject.get("Rating").toString());
+                        map.put("FirstName", jsonObject.get("FirstName").toString());
+                        map.put("LastName", jsonObject.get("LastName").toString());
+                        map.put("FeedbackDate", jsonObject.get("FeedbackDate").toString());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    arrData.add(map);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+                setRecyclerView();
             }
 
 
@@ -280,7 +325,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
 
             }
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

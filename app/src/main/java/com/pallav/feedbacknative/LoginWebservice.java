@@ -136,13 +136,7 @@ public class LoginWebservice  {
     }
 
 
-    FirstName
-    LastName
-    Office
-    Email
-    Password
-    IsActive
-    IsDelete
+
 
     public static boolean invokeSignupInsertUser(String  FirstName,String  LastName,String  Office,  String Email , String Password, String IsActive, String IsDelete, String webMethName)  {
 

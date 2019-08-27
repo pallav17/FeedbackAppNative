@@ -92,7 +92,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
             //Call Web Method
 
 
-            sendFeedbackStatus = LoginWebservice.invokeInsertFeedbackWS(subject.getText().toString(),your_full_name.getText().toString(), likes.getText().toString(), suggestions.getText().toString(),Sender_Email,ratingValue,"InsertFeedbackDataNew");
+            sendFeedbackStatus = LoginWebservice.invokeInsertFeedbackWS(subject.getText().toString(), getIntent().getStringExtra("Email"), likes.getText().toString(), suggestions.getText().toString(),Sender_Email,ratingValue,"InsertFeedbackDataNew");
             return sendFeedbackStatus;
 
         }
