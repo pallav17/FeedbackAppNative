@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
 
@@ -54,7 +53,9 @@ public class InsertFeedbackActivity extends AppCompatActivity {
         CheckLogin cl = new CheckLogin();
 
         final SharedPreferences mSharedPreference= PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        Sender_Email=(mSharedPreference.getString("Username", "Default_Value"));
+       // Sender_Email=(mSharedPreference.getString("Username", "Default_Value"));
+
+        Sender_Email = ( new SetSharedPreferences().getValue(InsertFeedbackActivity.this, "Username"));
         Toast.makeText(getApplicationContext(), Sender_Email, Toast.LENGTH_SHORT).show();
 
 

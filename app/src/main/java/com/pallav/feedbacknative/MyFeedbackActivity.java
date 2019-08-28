@@ -1,11 +1,14 @@
 package com.pallav.feedbacknative;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +32,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -69,6 +73,9 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
         //webView = (WebView)findViewById(R.id.webview);
         Intent getintent = getIntent();
         final String message = getintent.getStringExtra("Username");
@@ -82,25 +89,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
     // callWebServiceForGetData();
 
-      /*  webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                String key = "email1";
-                String val = message;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
 
-                    webView.evaluateJavascript("localStorage.setItem('"+ key +"','"+ val +"');", null);
 
-                    GetApi gt = new GetApi();
-                    gt.getResponse("GetFeedBackDetailNew");
-                    Log.e("respone",gt.toString());
-
-                } else {
-                    webView.loadUrl("javascript:localStorage.setItem('"+ key +"','"+ val +"');");
-                }
-            }
-        });*/
     }
 
     Services services;
@@ -173,6 +163,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         // specify an adapter (see also next example)
 
         mAdapter = new FeedbackListAdapter(arrData);
+
+        Collections.reverse(arrData);
         recyclerView.setAdapter(mAdapter);
     }
 
