@@ -181,7 +181,7 @@ public class LoginWebservice  {
         InsertUserRequest.addProperty(PasswordPI);
 
         IsActivePI.setName("IsActive");
-        IsActivePI.setValue(Email);
+        IsActivePI.setValue(IsActive);
         IsActivePI.setType(String.class);
         InsertUserRequest.addProperty(IsActivePI);
 
