@@ -52,14 +52,18 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    Intent MyFeedbacks = new Intent(MyFeedbackActivity.this,MyFeedbackActivity.class);
+                    startActivity(MyFeedbacks);
+                    return true;
+
+                case R.id.navigation_dashboard:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
                     startActivity(InsertFeedback);
                     return true;
-                case R.id.navigation_dashboard:
 
-                    return true;
                 case R.id.navigation_notifications:
                     return true;
+
             }
             return false;
         }

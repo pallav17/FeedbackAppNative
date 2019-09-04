@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Schaeffler</string>
-    <string name="title_home">Send Feedback</string>
-    <string name="title_dashboard">My Feedbacks</string>
-    <string name="title_notifications">Profile</string>
+    <string name="app_name">Feedback</string>
+    <string name="title_feedback_inbox">Inbox</string>
+    <string name="title_compose_feedback">Compose</string>
+    <string name="title_profile">Profile</string>
     <string name="title_logout">Log out</string>
 
 

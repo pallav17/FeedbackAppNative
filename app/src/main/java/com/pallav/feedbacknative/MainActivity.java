@@ -19,20 +19,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent InsertFeedback = new Intent(MainActivity.this,InsertFeedbackActivity.class);
-                    startActivity(InsertFeedback);
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+
+
                 case R.id.navigation_dashboard:
-
-                    Intent MyFeedbacks = new Intent(MainActivity.this,MyFeedbackActivity.class);
-                    startActivity(MyFeedbacks);
-                    mTextMessage.setText(R.string.title_dashboard);
-
+                    mTextMessage.setText(R.string.title_compose_feedback);
                     return true;
+
+                case R.id.navigation_home:
+                    mTextMessage.setText(R.string.title_feedback_inbox);
+                    return true;
+
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    mTextMessage.setText(R.string.title_profile);
                     return true;
             }
             return false;
