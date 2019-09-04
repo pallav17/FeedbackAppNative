@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/Heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:padding="3dp"
+        android:gravity="left"
+        android:text="Profile"
+        android:textColor="#00893d"
+        android:layout_alignParentLeft ="true"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/Heading"  />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="80dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:text="Email:"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/Heading"/>
+
+    <TextView
+        android:id="@+id/txtEmailValue"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:text="PallavShah@gmail.com"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/txtEmail"
+        android:layout_below="@+id/Heading"/>
+
+    <TextView
+        android:id="@+id/txtSep"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/txtEmail"/>
+
+    <TextView
+        android:id="@+id/txtVersion"
+        android:layout_width="80dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:text="Version:"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/txtSep"/>
+
+    <TextView
+        android:id="@+id/txtVersionValue"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:text="1.0.0"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/txtVersion"
+        android:layout_below="@+id/txtSep"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/txtVersion"/>
+
+</RelativeLayout>

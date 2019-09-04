@@ -1,8 +1,6 @@
 package com.pallav.feedbacknative;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +19,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
-import com.pallav.feedbacknative.Util.GetApi;
 import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
@@ -62,6 +59,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                     return true;
 
                 case R.id.navigation_notifications:
+                    Intent ProfileActivity = new Intent(MyFeedbackActivity.this, ProfileActivity.class);
+                    startActivity(ProfileActivity);
                     return true;
 
             }
@@ -78,7 +77,13 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+
+//        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         //webView = (WebView)findViewById(R.id.webview);
         Intent getintent = getIntent();
