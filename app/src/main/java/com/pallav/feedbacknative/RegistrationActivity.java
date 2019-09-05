@@ -21,6 +21,7 @@ public class RegistrationActivity extends AppCompatActivity {
     Button signupAccount;
 
     boolean accountSignupStatus;
+    boolean otpVerifationStatus;
     CheckLogin cl;
 
     @Override
@@ -81,6 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 Log.d("Insert Feedback", "Login Failed, try again");
             }
+
             //Error status is true
             return;
         }
@@ -119,8 +121,23 @@ public class RegistrationActivity extends AppCompatActivity {
         builder.setPositiveButton("Verify", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               // Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
-            //    startActivity(i);
+
+                otpVerifationStatus = LoginWebservice.verifyOTP(input.getText().toString(),"VerifyOtpNumber");
+
+                Log.e("Response Coming inn", Boolean.toString( otpVerifationStatus));
+
+                if(otpVerifationStatus)
+                {
+                    Toast.makeText(getApplicationContext(), "Account Verified successfully ", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(RegistrationActivity.this, CheckLogin.class);
+                    startActivity(i);
+                }
+
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Sorry, Could not verify that Access Code ", Toast.LENGTH_LONG).show();
+                }
+
                 dialog.cancel();
             }
         });

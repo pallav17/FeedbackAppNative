@@ -82,6 +82,34 @@ public class LoginWebservice  {
 
         }
 
+
+    public static boolean verifyOTP(String accessCode, String webMethName) {
+        boolean verificationStatus = false;
+        boolean result = false;
+
+        // Create request
+        SoapObject verifyRequest = new SoapObject(NAMESPACE, webMethName);
+        // Property which holds input parameters
+        PropertyInfo AccessCodePI = new PropertyInfo();
+        // Set Username
+        AccessCodePI.setName("OtpNo");
+        // Set Value
+        AccessCodePI.setValue(accessCode);
+        // Set dataType
+        AccessCodePI.setType(String.class);
+        // Add the property to request object
+        verifyRequest.addProperty(AccessCodePI);
+        //Set Password
+
+        result = invokeApi(verifyRequest,webMethName);
+
+        return result;
+
+
+    }
+
+
+
     public static boolean invokeInsertFeedbackWS(String  Subject,String Recepient_Email,String Description, String Suggestion, String Email, String Rating, String webMethName)  {
 
         boolean result = false;
@@ -134,6 +162,8 @@ public class LoginWebservice  {
 
 
     }
+
+
 
 
 
@@ -197,10 +227,13 @@ public class LoginWebservice  {
 
     }
 
+
+
     public  static String invokeDisplayFeedbackWS( String Email, String Token , String webMethName)    {
 
         boolean result = false;
         String Feedbacks;
+
 
         // Create request
         SoapObject DisplayFeedbackRequest = new SoapObject(NAMESPACE, webMethName);
