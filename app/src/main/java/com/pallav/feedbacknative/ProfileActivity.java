@@ -18,8 +18,13 @@ public class ProfileActivity extends AppCompatActivity {
         actionbar.setDisplayUseLogoEnabled(true);
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setHomeButtonEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
-        actionbar.setLogo(R.drawable.ic_home_black_24dp);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+
 
     }
 }
+
+
+
+

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.*;
 import com.pallav.feedbacknative.Util.GetApi;
@@ -30,6 +31,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     ProgressBar webservicePG;
     boolean loginStatus;
     String editTextPassword;
+    boolean forgotpasswordOTP;
 
     Button btn_create_an_account, btn_forgot_password;
 
@@ -139,7 +141,27 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                alertConfirmOTP();
+
+
+
+
+               forgotpasswordOTP = LoginWebservice.forgorPasswordWS(input.getText().toString(),"ForgotPassword");
+
+                Log.d("Forgot Password Response Coming inn", Boolean.toString( forgotpasswordOTP));
+
+                if(forgotpasswordOTP)
+                {
+                    Toast.makeText(getApplicationContext(), "Access Code sent successfully ", Toast.LENGTH_LONG).show();
+                    alertConfirmOTP();
+                }
+
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Sorry, Invalid Email Address", Toast.LENGTH_LONG).show();
+                }
+
+
+
                 dialog.cancel();
             }
         });

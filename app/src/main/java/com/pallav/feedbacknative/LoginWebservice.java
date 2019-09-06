@@ -83,6 +83,33 @@ public class LoginWebservice  {
         }
 
 
+
+
+    public static boolean forgorPasswordWS(String Email, String webMethName) {
+        boolean requestStatus = false;
+        boolean result = false;
+
+        SoapObject forgotpassRequest = new SoapObject(NAMESPACE, webMethName);
+        // Property which holds input parameters
+        PropertyInfo EmailPI = new PropertyInfo();
+
+        EmailPI.setName("Email");
+
+        EmailPI.setValue(Email);
+        // Set dataType
+        EmailPI.setType(String.class);
+        // Add the property to request object
+        forgotpassRequest.addProperty(EmailPI);
+
+        result = invokeApi(forgotpassRequest,webMethName);
+
+
+        return result;
+
+
+    }
+
+
     public static boolean verifyOTP(String accessCode, String webMethName) {
         boolean verificationStatus = false;
         boolean result = false;
