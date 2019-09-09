@@ -1,6 +1,8 @@
 package com.pallav.feedbacknative;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -83,7 +85,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
         actionbar.setLogo(R.drawable.actionbar_logo);
 
-//        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
+       actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         //webView = (WebView)findViewById(R.id.webview);
         Intent getintent = getIntent();

@@ -2,10 +2,13 @@ package com.pallav.feedbacknative;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -47,6 +50,19 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
+
+
+        getSupportActionBar().setTitle("");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
+
 
         initSetup();
         IBAction();
@@ -188,12 +204,12 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         builder.setView(input);
 
 // Set up the buttons
-        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
                 startActivity(i);
-                dialog.cancel();
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

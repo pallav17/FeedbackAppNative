@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginLeft="8dp"
-        android:text="PallavShah@gmail.com"
+        android:text=""
         android:gravity="center_vertical"
         android:layout_toRightOf="@+id/txtEmail"
         android:layout_below="@+id/Heading"/>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Feedback</string>
+    <string name="app_name">Feedback App</string>
     <string name="title_feedback_inbox">Inbox</string>
     <string name="title_compose_feedback">Compose</string>
     <string name="title_profile">Profile</string>

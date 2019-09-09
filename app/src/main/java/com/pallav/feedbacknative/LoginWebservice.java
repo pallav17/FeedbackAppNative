@@ -84,6 +84,34 @@ public class LoginWebservice  {
 
 
 
+    public static boolean invokeUpdatePasswordWS(String newPassWord, String webMethName) {
+        boolean UpdatePassword = false;
+        boolean result = false;
+
+        // Create request
+        SoapObject updatePasswordRequest = new SoapObject(NAMESPACE, webMethName);
+        // Property which holds input parameters
+        PropertyInfo currentPwdPI = new PropertyInfo();
+        PropertyInfo newPwdPI = new PropertyInfo();
+        // Set Username
+        newPwdPI.setName("Password");
+        // Set Value
+        newPwdPI.setValue(newPassWord);
+        // Set dataType
+        newPwdPI.setType(String.class);
+        // Add the property to request object
+        updatePasswordRequest.addProperty(newPwdPI);
+        //Set Password
+
+        result = invokeApi(updatePasswordRequest,webMethName);
+
+
+        return result;
+
+    }
+
+
+
 
     public static boolean forgorPasswordWS(String Email, String webMethName) {
         boolean requestStatus = false;
