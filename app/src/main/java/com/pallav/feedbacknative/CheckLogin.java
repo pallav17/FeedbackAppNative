@@ -30,11 +30,11 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     static boolean errored = false;
     Button b;
     TextView statusTV;
-    EditText userNameET, passWordET;
+    EditText userNameET, passWordET,inputEmail;
     ProgressBar webservicePG;
     boolean loginStatus;
     String editTextPassword;
-    boolean forgotpasswordOTP;
+    boolean forgotpasswordOTP, forgotpasswordverifyOTP;
 
     Button btn_create_an_account, btn_forgot_password;
 
@@ -148,10 +148,10 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         builder.setCancelable(false);
 
 // Set up the input
-        final EditText input = new EditText(this);
+       inputEmail = new EditText(this);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        builder.setView(input);
+        inputEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(inputEmail);
 
 // Set up the buttons
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
@@ -161,7 +161,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
 
 
-               forgotpasswordOTP = LoginWebservice.forgorPasswordWS(input.getText().toString(),"ForgotPassword");
+               forgotpasswordOTP = LoginWebservice.forgorPasswordWS(inputEmail.getText().toString(),"ForgotPassword");
 
                 Log.d("Forgot Password Response Coming inn", Boolean.toString( forgotpasswordOTP));
 
@@ -200,18 +200,28 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 // Set up the input
         final EditText input = new EditText(this);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
         builder.setView(input);
 
 // Set up the buttons
         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
-                startActivity(i);
 
+
+
+                forgotpasswordverifyOTP = LoginWebservice.verifyForgotPasswordOTP(input.getText().toString(),inputEmail.getText().toString() , "VerifyforgotOtpNumber");
+
+                if (forgotpasswordverifyOTP) {
+                    Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
+                    i.putExtra("userEmail", inputEmail.getText().toString());
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid Access code, Please Try again", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

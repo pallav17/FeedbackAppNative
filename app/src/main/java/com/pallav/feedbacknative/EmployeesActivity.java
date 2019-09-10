@@ -2,6 +2,8 @@ package com.pallav.feedbacknative;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -39,6 +41,17 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employees);
+
+        getSupportActionBar().setTitle("");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
 
         //callWebServiceForGetEmployeesData();
         URL url = NetworkUtil.buildURL(getResources().getString(R.string.base_SOAP)+ "TokenTest2AU?Email="

@@ -2,7 +2,10 @@ package com.pallav.feedbacknative;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +31,16 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        getSupportActionBar().setTitle("");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         init();
 

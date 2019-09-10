@@ -2,10 +2,13 @@ package com.pallav.feedbacknative;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Rating;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,17 @@ public class InsertFeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertfeedback);
+
+        getSupportActionBar().setTitle("");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
 
         init();
 

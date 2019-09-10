@@ -31,10 +31,11 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = getIntent();
 
                 if ((edt_password.getText().toString()).equals((edt_confirm_password.getText().toString()))) {
 
-                    updatePassword = LoginWebservice.forgorPasswordWS(edt_confirm_password.getText().toString(), "ForgotPassMain");
+                    updatePassword = LoginWebservice.invokeUpdatePasswordWS(intent.getExtras().getString("userEmail"),edt_confirm_password.getText().toString(), "ForgotPassMainAndroid");
                     Log.d("updatePassword Response Coming inn", Boolean.toString(updatePassword));
 
                     if (updatePassword) {

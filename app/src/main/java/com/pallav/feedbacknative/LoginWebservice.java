@@ -84,14 +84,23 @@ public class LoginWebservice  {
 
 
 
-    public static boolean invokeUpdatePasswordWS(String newPassWord, String webMethName) {
+    public static boolean invokeUpdatePasswordWS(String Email, String newPassWord, String webMethName) {
         boolean UpdatePassword = false;
         boolean result = false;
 
         // Create request
         SoapObject updatePasswordRequest = new SoapObject(NAMESPACE, webMethName);
         // Property which holds input parameters
-        PropertyInfo currentPwdPI = new PropertyInfo();
+        PropertyInfo EmailPI = new PropertyInfo();
+
+        EmailPI.setName("Email");
+
+        EmailPI.setValue(Email);
+        // Set dataType
+        EmailPI.setType(String.class);
+        // Add the property to request object
+      updatePasswordRequest.addProperty(EmailPI);
+
         PropertyInfo newPwdPI = new PropertyInfo();
         // Set Username
         newPwdPI.setName("Password");
@@ -153,6 +162,7 @@ public class LoginWebservice  {
         // Set dataType
         AccessCodePI.setType(String.class);
         // Add the property to request object
+
         verifyRequest.addProperty(AccessCodePI);
         //Set Password
 
@@ -163,6 +173,42 @@ public class LoginWebservice  {
 
     }
 
+
+    public static boolean verifyForgotPasswordOTP(String accessCode, String Email, String webMethName) {
+
+        boolean verificationStatus = false;
+        boolean result = false;
+
+        // Create request
+        SoapObject verifyRequest = new SoapObject(NAMESPACE, webMethName);
+
+        PropertyInfo EmailPI = new PropertyInfo();
+
+        EmailPI.setName("Email");
+
+        EmailPI.setValue(Email);
+
+        EmailPI.setType(String.class);
+        // Set dataType
+        verifyRequest.addProperty(EmailPI);
+
+
+        PropertyInfo AccessCodePI = new PropertyInfo();
+        // Set Username
+        AccessCodePI.setName("OtpNo");
+        // Set Value
+        AccessCodePI.setValue(accessCode);
+        // Set dataType
+        AccessCodePI.setType(String.class);
+        // Add the property to request object
+        verifyRequest.addProperty(AccessCodePI);
+
+        //Set Password
+        result = invokeApi(verifyRequest,webMethName);
+
+        return result;
+
+    }
 
 
     public static boolean invokeInsertFeedbackWS(String  Subject,String Recepient_Email,String Description, String Suggestion, String Email, String Rating, String webMethName)  {
