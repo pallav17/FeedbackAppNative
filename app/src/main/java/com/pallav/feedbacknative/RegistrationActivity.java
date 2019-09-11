@@ -14,10 +14,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
-public class RegistrationActivity extends AppCompatActivity {
+
+
+
+
+
+public class RegistrationActivity extends AppCompatActivity  {
 
 
     EditText edt_firstname, edt_lastname, edt_office, edt_email, edt_password, edt_confirm_password;
@@ -26,6 +30,10 @@ public class RegistrationActivity extends AppCompatActivity {
     boolean accountSignupStatus;
     boolean otpVerifationStatus;
     CheckLogin cl;
+
+    String regexPassword = "[A-Z]{1}[A-Za-z0-9\\W]{7,}";
+    String regexEmail = "^[A-Za-z0-9]+(.|_)+[A-Za-z0-9]+@+schaeffler.com$";
+    String regexText = "^[A-za-z ]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +60,15 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 AsyncCallSignUp task = new AsyncCallSignUp();
                 //Call execute
-                task.execute();
+                if(validate())
+                {
+                    task.execute();
+                }
+
 
             }
             });
         }
-
 
 
 
@@ -67,10 +78,14 @@ public class RegistrationActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
             //Call Web Method
 
-            accountSignupStatus = LoginWebservice.invokeSignupInsertUser(edt_firstname.getText().toString(), edt_lastname.getText().toString(), edt_office.getText().toString(), edt_email.getText().toString(), edt_password.getText().toString(), "false", "false", "InsertUserData");
-            return accountSignupStatus;
+              if(accountSignupStatus)
+              {
+                  return true;
+              }
+              return false;
+            }
 
-        }
+
 
         //Once WebService returns response
         protected void onPostExecute(Boolean result) {
@@ -93,7 +108,7 @@ public class RegistrationActivity extends AppCompatActivity {
                // startActivity(intObj);
             } else {
 
-                Log.d("Insert Feedback", "Login Failed, try again");
+                Toast.makeText(getApplicationContext(), "Failed!! Account already exists or there are network issues in Device. ", Toast.LENGTH_LONG).show();
             }
 
             //Error status is true
@@ -104,8 +119,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //Make Progress Bar visible
         protected void onPreExecute() {
             super.onPreExecute();
-            // webservicePG.setVisibility(View.VISIBLE);
-            /*loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");*/
+
 
         }
 
@@ -177,7 +191,34 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+    private Boolean validate(){
+
+        if(edt_firstname.getText().toString().matches(regexText) && edt_lastname.getText().toString().matches(regexText) && edt_office.getText().toString().matches(regexText) ) {
+            if (edt_email.getText().toString().matches(regexEmail)) {
+
+                if (edt_password.getText().toString().matches(regexPassword) && edt_confirm_password.getText().toString().matches(regexPassword)) {
+                    accountSignupStatus = LoginWebservice.invokeSignupInsertUser(edt_firstname.getText().toString(), edt_lastname.getText().toString(), edt_office.getText().toString(), edt_email.getText().toString(), edt_password.getText().toString(), "false", "false", "InsertUserData");
+                    return true;
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Not a valid password, Must contain  First character in Uppercase and at least 8 or more other characters", Toast.LENGTH_LONG).show();
+
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Not a valid Email, is should have a Schaeffler Domain", Toast.LENGTH_LONG).show();
+
+            }
+        }
+
+        else {
+            Toast.makeText(getApplicationContext(), "Not a valid First Name or Last Name or Office Location", Toast.LENGTH_LONG).show();
+
+        }
+
+            return false;
     }
+}
 
 
 
