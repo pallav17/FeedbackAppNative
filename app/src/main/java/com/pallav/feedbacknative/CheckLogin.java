@@ -194,7 +194,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     public void alertConfirmOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter OTP");
-        builder.setMessage("Please enter OTP Received from EMail.");
+        builder.setMessage("Please enter the Access code Received in your EMail inbox.");
         builder.setCancelable(false);
 
 // Set up the input
@@ -298,7 +298,8 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
             }else{
                 //Set Error message
-                statusTV.setText("Login Failed, try again");
+                statusTV.setTextColor(Color.parseColor("#FF0000"));
+                statusTV.setText("Login Failed, Invalid Credentials");
             }
             //Error status is true
             return;

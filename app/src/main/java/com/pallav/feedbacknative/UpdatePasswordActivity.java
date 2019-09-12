@@ -14,8 +14,9 @@ public class UpdatePasswordActivity extends AppCompatActivity {
 
    EditText edt_password,edt_confirm_password;
    Button button1;
+    String regexPassword = "[A-Z]{1}[A-Za-z0-9\\W]{7,}";
 
-   Boolean updatePassword;
+    Boolean updatePassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +36,27 @@ public class UpdatePasswordActivity extends AppCompatActivity {
 
                 if ((edt_password.getText().toString()).equals((edt_confirm_password.getText().toString()))) {
 
-                    updatePassword = LoginWebservice.invokeUpdatePasswordWS(intent.getExtras().getString("userEmail"),edt_confirm_password.getText().toString(), "ForgotPassMainAndroid");
-                    Log.d("updatePassword Response Coming inn", Boolean.toString(updatePassword));
+                    if (edt_password.getText().toString().matches(regexPassword) && edt_confirm_password.getText().toString().matches(regexPassword)) {
+                        updatePassword = LoginWebservice.invokeUpdatePasswordWS(intent.getExtras().getString("userEmail"),edt_confirm_password.getText().toString(), "ForgotPassMainAndroid");
+                        Log.d("updatePassword Response Coming inn", Boolean.toString(updatePassword));
 
-                    if (updatePassword) {
-                        Toast.makeText(getApplicationContext(), "Password reset Successful. Please Login with new credentials. ", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(UpdatePasswordActivity.this, CheckLogin.class);
-                        startActivity(i);
+                        if (updatePassword) {
+                            Toast.makeText(getApplicationContext(), "Password reset Successful. Please Login with new credentials. ", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(UpdatePasswordActivity.this, CheckLogin.class);
+                            startActivity(i);
 
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Sorry, There are issues with the Network Connection. Please try again on the Website", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Sorry, There are issues with the Network Connection. Please try again on the Website", Toast.LENGTH_LONG).show();
+                        }
+
+
                     }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Not a valid password, Must contain  First character in Uppercase and at least 8 or more other characters", Toast.LENGTH_LONG).show();
+                    }
+
+
                 }
 
                 else {
