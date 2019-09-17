@@ -1,6 +1,9 @@
 package com.pallav.feedbacknative;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +25,18 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_password);
+
+
+        getSupportActionBar().setTitle("");
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayUseLogoEnabled(true);
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
+
+        actionbar.setLogo(R.drawable.actionbar_logo);
+        actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+
 
         edt_password = (EditText) findViewById(R.id.edt_password);
         edt_confirm_password = (EditText) findViewById(R.id.edt_confirm_password);
