@@ -11,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -172,8 +174,8 @@ public class InsertFeedbackActivity extends AppCompatActivity {
         //Make Progress Bar visible
         protected void onPreExecute() {
             super.onPreExecute();
-            // webservicePG.setVisibility(View.VISIBLE);
-            /*loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");*/
+           //webservicePG.setVisibility(View.VISIBLE);
+             /*loginStatus = LoginWebservice.invokeLoginWS(editTextUsername,editTextPassword,"getLogin");*/
 
         }
 
@@ -184,7 +186,12 @@ public class InsertFeedbackActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.login_action, menu);
+        return true;
+    }
 
 
 

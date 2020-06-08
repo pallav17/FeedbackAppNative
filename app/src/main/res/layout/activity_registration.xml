@@ -26,11 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txt_sep"
-        android:layout_above="@+id/rtl_account_view">
+       >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/rtl_account_view">
 
             <EditText
                 android:id="@+id/edt_firstname"
@@ -203,28 +204,5 @@
     </ScrollView>
 
 
-    <RelativeLayout
-        android:id="@+id/rtl_account_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <TextView
-            android:id="@+id/txt_dont_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account yet?"
-            android:textAlignment="center"
-            android:textSize="17dp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create an account"
-            android:padding="5dp"
-            android:layout_below="@+id/txt_dont_account"
-            android:background="@null"
-            android:textAllCaps="false"/>
-    </RelativeLayout>
-
 </RelativeLayout>
+

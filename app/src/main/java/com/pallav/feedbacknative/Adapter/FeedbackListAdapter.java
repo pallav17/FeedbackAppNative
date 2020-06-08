@@ -12,8 +12,10 @@ import com.pallav.feedbacknative.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.MyViewHolder> {
     private ArrayList<HashMap<String, String>> arrData;
+    private final int limit = 20;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -22,6 +24,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         // each data item is just a string in this case
         public TextView txtSubject, txt_like, txt_suggestion, feedback_sender, txt_date;
         public RatingBar ratingBar;
+
         public MyViewHolder(View v) {
             super(v);
             txtSubject = v.findViewById(R.id.txtSubject);
@@ -57,7 +60,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.txtSubject.setText(arrData.get(position).get("Subject"));
-       // holder.textView.setText(arrData.get(position).get("FirstName"));
+        // holder.textView.setText(arrData.get(position).get("FirstName"));
         holder.txt_like.setText(arrData.get(position).get("Description"));
         holder.txt_suggestion.setText(arrData.get(position).get("Suggestion"));
         holder.feedback_sender.setText(arrData.get(position).get("FirstName") + " " + arrData.get(position).get("LastName"));
@@ -69,6 +72,15 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return arrData.size();
+
+        if (arrData.size() > limit) {
+
+            return limit;
+        } else {
+
+            return arrData.size();
+        }
     }
+
 }
+

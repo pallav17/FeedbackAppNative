@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/item_logout"
-        android:icon="@drawable/baseline_logoff_24"
+        android:icon="@drawable/exit_to_app_24px_new"
         app:showAsAction="always"
-        android:iconTint="@color/cardview_dark_background"
+        android:iconTint="@color/colorGreen"
         android:title="@string/title_logout" />
 
 

@@ -1,6 +1,7 @@
 package com.pallav.feedbacknative;
 
 import android.app.SearchManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -32,6 +33,8 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class EmployeesActivity extends AppCompatActivity implements Services.webserviceAsync, SearchView.OnQueryTextListener
@@ -92,6 +95,8 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
 
     ArrayList<HashMap<String, String>> arrData = new ArrayList<>();
 
+
+
     private void setRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -106,6 +111,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         // specify an adapter (see also next example)
 
         mAdapter = new EmpListAdapter(EmployeesActivity.this, arrData);
+
         recyclerView.setAdapter(mAdapter);
 
     }
@@ -132,7 +138,9 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
                     e.printStackTrace();
                 }
                 arrData.add(map);
+
             }
+
             setRecyclerView();
 
         }
@@ -165,6 +173,8 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
                 JSONArray jsonArray = new JSONArray(result);
                 arrData = new ArrayList<>();
 
+
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     HashMap<String, String> map = new HashMap<>();
                     try {
@@ -178,7 +188,16 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
                         e.printStackTrace();
                     }
                     arrData.add(map);
+
+                    Collections.sort(arrData,new Comparator<HashMap<String,String>>() {
+                        public int compare(HashMap<String, String> mapping1, HashMap<String, String> mapping2) {
+                            return mapping1.get("name").compareTo(mapping2.get("name"));
+                        }
+                    });
+
                 }
+
+
                 setRecyclerView();
 
             } catch (JSONException e) {

@@ -134,7 +134,7 @@ public class RegistrationActivity extends AppCompatActivity  {
     public void alertConfirmOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Access Code ");
-        builder.setMessage("Please enter the Access Code Received in Email.");
+        builder.setMessage("Please enter the Access Code Received in Email. Don't tap the back button");
         builder.setCancelable(false);
 
 
@@ -188,6 +188,18 @@ public class RegistrationActivity extends AppCompatActivity  {
         edt_password = (EditText) findViewById(R.id.edt_password);
         edt_confirm_password = (EditText) findViewById(R.id.edt_confirm_password);
         signupAccount = (Button) findViewById(R.id.button1);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(RegistrationActivity.this).create();
+        alertDialog.setTitle("Tip");
+        alertDialog.setMessage("Before you register, please make sure you have instant access to your Schaeffler Email inbox. A four digit access code will be sent to your Email for verification");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+
     }
 
 

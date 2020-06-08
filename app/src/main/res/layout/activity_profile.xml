@@ -75,4 +75,23 @@
         android:background="@color/colorPrimary"
         android:layout_below="@+id/txtVersion"/>
 
+    <Button
+        android:id="@+id/reviewButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#00893d"
+        android:gravity="center"
+        android:text="Have Suggestions for us ?"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginRight="20dp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/txtVersion"/>
+
+
+
+
+
 </RelativeLayout>

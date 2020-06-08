@@ -28,6 +28,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:text="\@schaeffler.com"
         android:padding="12dp"
         android:layout_margin="8dp"
         android:layout_below="@+id/txt_sep"
