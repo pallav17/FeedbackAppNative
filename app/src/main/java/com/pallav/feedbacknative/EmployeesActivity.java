@@ -23,6 +23,7 @@ import android.widget.ListView;
 
 import com.pallav.feedbacknative.Adapter.EmpListAdapter;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
+import com.pallav.feedbacknative.Util.Constant;
 import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
@@ -57,7 +58,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
 
 
         //callWebServiceForGetEmployeesData();
-        URL url = NetworkUtil.buildURL(getResources().getString(R.string.base_SOAP)+ "TokenTest2AU?Email="
+        URL url = NetworkUtil.buildURL(Constant.CLOUDURL +"WebService1.asmx/" + "TokenTest2AU?Email="
                 + new SetSharedPreferences().getValue(EmployeesActivity.this, "Username")
                 + "&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallGetEMPList  task = new AsyncCallGetEMPList();

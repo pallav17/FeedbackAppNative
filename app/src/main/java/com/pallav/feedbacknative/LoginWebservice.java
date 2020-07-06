@@ -2,7 +2,9 @@ package com.pallav.feedbacknative;
 
 import android.util.Log;
 
+import com.pallav.feedbacknative.Util.Constant;
 import com.pallav.feedbacknative.Util.HeaderProperty;
+import com.pallav.feedbacknative.Util.SecureUrl;
 import com.pallav.feedbacknative.Util.Services;
 
 import org.json.JSONArray;
@@ -29,21 +31,20 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 
-public class LoginWebservice  {
+public class LoginWebservice   {
 
         //Namespace of the Webservice - can be found in WSDL
         private static String NAMESPACE = "http://tempuri.org/";
 
 
         //Webservice URL - WSDL File location
-        private static String URL = "http://www.as-mexico.com.mx/feedback/Webservice1.asmx?WSDL";//Make sure you changed IP address
+
+        private static String URL = Constant.CLOUDURL+"Webservice1.asmx?WSDL";//Make sure you changed IP address
         //SOAP Action URI again Namespace + Web method name
         private static String SOAP_ACTION = "http://tempuri.org/";
 
 
-
-
-
+          splashActivity sp = new splashActivity();
 
 
 
@@ -369,6 +370,9 @@ public class LoginWebservice  {
 
         {
             boolean responseStatus = false;
+
+            SecureUrl.trustEveryone();
+
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                     SoapEnvelope.VER11);
             envelope.dotNet = true;
@@ -415,6 +419,7 @@ public class LoginWebservice  {
 
         // AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
         // Create HTTP call object
+
         HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 
         try {

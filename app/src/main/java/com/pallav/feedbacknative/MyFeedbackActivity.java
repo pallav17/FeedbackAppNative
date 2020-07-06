@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
+import com.pallav.feedbacknative.Util.Constant;
 import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
@@ -93,7 +94,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         final String message = getintent.getStringExtra("Username");
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        url = NetworkUtil.buildURL(getResources().getString(R.string.base_SOAP)+ "TokenTest1DF?Email="
+        url = NetworkUtil.buildURL(Constant.CLOUDURL +"WebService1.asmx/" + "TokenTest1DF?Email="
                 + new SetSharedPreferences().getValue(MyFeedbackActivity.this, "Username")
                 + "&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
