@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -16,12 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 
-
-
-
-public class RegistrationActivity extends AppCompatActivity  {
+public class RegistrationActivity extends AppCompatActivity {
 
 
     EditText edt_firstname, edt_lastname, edt_office, edt_email, edt_password, edt_confirm_password;

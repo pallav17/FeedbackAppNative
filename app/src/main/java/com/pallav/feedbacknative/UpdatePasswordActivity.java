@@ -3,8 +3,7 @@ package com.pallav.feedbacknative;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,11 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class UpdatePasswordActivity extends AppCompatActivity {
 
    EditText edt_password,edt_confirm_password;
    Button button1;
-    String regexPassword = "[A-Z]{1}[A-Za-z0-9\\W]{7,}";
+   String regexPassword = "[A-Z]{1}[A-Za-z0-9\\W]{7,}";
 
     Boolean updatePassword = false;
 

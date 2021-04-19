@@ -6,20 +6,25 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
 import com.pallav.feedbacknative.Util.Constant;
 import com.pallav.feedbacknative.Util.NetworkUtil;
@@ -35,6 +40,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 
 public class MyFeedbackActivity extends AppCompatActivity implements Services.webserviceAsync {
 
@@ -42,6 +54,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     Gson gson = new Gson();
     String[] feedbacks;
     URL url;
+    BadgeDrawable badge;
+    BottomNavigationView navView;
 
     private TextView mTextMessage;
 
@@ -49,7 +63,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected( MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Intent MyFeedbacks = new Intent(MyFeedbackActivity.this,MyFeedbackActivity.class);
@@ -69,15 +83,29 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             }
             return false;
         }
+
+
+
+
+
     };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.myfeedbacks);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+      navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        badge = navView.getOrCreateBadge(R.id.navigation_home);
+        badge.setVisible(true);
+        badge.setNumber(25);
+
+
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayUseLogoEnabled(true);
@@ -103,6 +131,9 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     // callWebServiceForGetData();
 
 
+
+        AppCenter.start(getApplication(), "98c6eadb-92bd-47cd-8e9d-2a86dc1530fa",
+                Analytics.class, Crashes.class);
 
     }
 
@@ -354,4 +385,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         }
         return false;
     }
+
+
+
 }

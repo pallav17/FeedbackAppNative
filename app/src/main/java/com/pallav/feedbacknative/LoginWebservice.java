@@ -36,10 +36,11 @@ public class LoginWebservice   {
         //Namespace of the Webservice - can be found in WSDL
         private static String NAMESPACE = "http://tempuri.org/";
 
-
+            private static String httpsURL;
         //Webservice URL - WSDL File location
 
         private static String URL = Constant.CLOUDURL+"Webservice1.asmx?WSDL";//Make sure you changed IP address
+
         //SOAP Action URI again Namespace + Web method name
         private static String SOAP_ACTION = "http://tempuri.org/";
 
@@ -369,9 +370,10 @@ public class LoginWebservice   {
         public static boolean invokeApi(SoapObject request, String webMethName)
 
         {
+           // httpsURL = splashActivity.cerurl+"Webservice1.asmx?WSDL";
             boolean responseStatus = false;
 
-            SecureUrl.trustEveryone();
+           SecureUrl.trustEveryone();
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                     SoapEnvelope.VER11);

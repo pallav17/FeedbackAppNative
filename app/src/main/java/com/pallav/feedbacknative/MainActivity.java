@@ -1,17 +1,25 @@
 package com.pallav.feedbacknative;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
+
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.sql.DriverPropertyInfo;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
+    private TextView mTextMessage,unreadCount;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,9 +51,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+       // initializeCountDrawer();
+
 
 
     }
+   /* private  void initializeCountDrawer(){
+
+        //Gravity property aligns the text
+        unreadCount.setGravity(Gravity.CENTER_VERTICAL);
+     unreadCount.setTypeface(null, Typeface.BOLD);
+        unreadCount.setTextColor(getResources().getColor(R.color.colorAccent));
+        unreadCount.setText("99+");
+
+    }*/
 
 }

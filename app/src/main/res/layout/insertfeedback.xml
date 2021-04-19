@@ -45,7 +45,7 @@
 
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/full_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -65,10 +65,10 @@
                 android:clickable="false"
 
                 android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/subject1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 android:ems="10"
                 android:hint="Subject" />
             <!--android:inputType="textEmailAddress"-->
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 

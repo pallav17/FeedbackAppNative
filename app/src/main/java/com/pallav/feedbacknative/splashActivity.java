@@ -3,10 +3,12 @@ package com.pallav.feedbacknative;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.pallav.feedbacknative.Util.SecureUrl;
 
@@ -33,7 +35,7 @@ import static java.security.KeyStore.getInstance;
 
 public class splashActivity extends AppCompatActivity {
     private ProgressBar progressbar;
-
+    static String cerurl;
     AssetManager assetManager;
   public static   InputStream is;
     @Override
@@ -42,6 +44,7 @@ public class splashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         progressbar = findViewById(R.id.progressbar);
+
 
          assetManager = getAssets();
         try {
@@ -60,7 +63,7 @@ public class splashActivity extends AppCompatActivity {
         }, secondsDelayed * 2000);
 
 
-
+        setUpHttpsConnection();
        /* try {
             addCertificate();
 
@@ -95,7 +98,7 @@ public class splashActivity extends AppCompatActivity {
         }
     }
 
-    public static URL setUpHttpsConnection(String inputurl) {
+    public static String setUpHttpsConnection() {
         try {
             // Load CAs from an InputStream
             // (could be from a resource or ByteArrayInputStream or ...)
@@ -131,10 +134,11 @@ public class splashActivity extends AppCompatActivity {
             context.init(null, tmf.getTrustManagers(), null);
 
             // Tell the URLConnection to use a SocketFactory from our SSLContext
-            URL url = new URL(inputurl);
-         //   HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-         //   urlConnection.setSSLSocketFactory(context.getSocketFactory());
-                return url;
+            URL url = new URL("https://feedback-app.digital.schaeffler/");
+           HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+           urlConnection.setSSLSocketFactory(context.getSocketFactory());
+           cerurl = urlConnection.getURL().toString();
+           return cerurl;
 
         } catch (Exception ex) {
             Log.e(TAG, "Failed to establish SSL connection to server: " + ex.toString());
