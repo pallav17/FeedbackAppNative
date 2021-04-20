@@ -1,20 +1,16 @@
 package com.pallav.feedbacknative;
 
 import android.app.SearchManager;
-import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.ActionBar;
@@ -23,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pallav.feedbacknative.Adapter.EmpListAdapter;
-import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
 import com.pallav.feedbacknative.Util.Constant;
 import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.Services;
@@ -229,7 +224,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     }
 
     private void setUpViews() {
-        tbMainSearch = (SearchView)findViewById(R.id.searchView);
+        tbMainSearch = (SearchView) findViewById(R.id.searchView);
         tbMainSearch.setOnQueryTextListener(this);
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
@@ -237,18 +232,18 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
     }
 
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_search, menu);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         MenuItem mSearchmenuItem = menu.findItem(R.id.menu_toolbarsearch);
-        SearchView searchView = (SearchView) mSearchmenuItem.getActionView();
-        searchView.setQueryHint("enter Text");
-        searchView.setOnQueryTextListener(this  );
+      SearchView searchView = (SearchView) mSearchmenuItem.getActionView();
+     searchView.setQueryHint("enter Text");
+    searchView.setOnQueryTextListener(this  );
         Log.d("TAG", "onCreateOptionsMenu: mSearchmenuItem->" + mSearchmenuItem.getActionView());
         return true;
-    }
+    }*/
 
     @Override
     public boolean onQueryTextSubmit(String s) {
