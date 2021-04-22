@@ -1,5 +1,6 @@
 package com.pallav.feedbacknative.Adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
             txt_date = v.findViewById(R.id.txt_date);
 
             ratingBar = v.findViewById(R.id.ratingBar);
+
+
 
         }
     }

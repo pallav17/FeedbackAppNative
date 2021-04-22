@@ -14,6 +14,11 @@
         android:title="@string/title_compose_feedback" />
 
     <item
+        android:id="@+id/navigation_sendItems"
+        android:icon="@drawable/baseline_sentitems_24"
+        android:title="@string/title_feedback_inbox" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/baseline_profile_24"
         android:title="@string/title_profile" />

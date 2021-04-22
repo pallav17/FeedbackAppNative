@@ -67,16 +67,19 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Intent MyFeedbacks = new Intent(MyFeedbackActivity.this,MyFeedbackActivity.class);
+                    finish();
                     startActivity(MyFeedbacks);
                     return true;
 
                 case R.id.navigation_dashboard:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
+
                     startActivity(InsertFeedback);
                     return true;
 
                 case R.id.navigation_notifications:
                     Intent ProfileActivity = new Intent(MyFeedbackActivity.this, ProfileActivity.class);
+
                     startActivity(ProfileActivity);
                     return true;
 
@@ -108,6 +111,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
 
         ActionBar actionbar = getSupportActionBar();
+        getSupportActionBar().setTitle("");
         actionbar.setDisplayUseLogoEnabled(true);
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setHomeButtonEnabled(true);
@@ -161,26 +165,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
     @Override
     public void getResponse(String url, JSONObject result, Object status, Services.webcallid callId) {
-        Log.e("result", ""+result);
+        Log.e("result", "" + result);
 
-        /*if (callId == Services.webcallid.GET_EMP && result != null) {
-
-            JSONObject jsonObject = result;
-
-            for (int i = 0; i < 100; i++) {
-                HashMap<String, String>map = new HashMap<>();
-                try {
-                  //  map.put("name", jsonObject.get("employee_name").toString());
-
-                    map.put("name","Feedback for Native App");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                arrData.add(map);
-            }
-            setRecyclerView();
-
-        }*/
     }
 
     @Override

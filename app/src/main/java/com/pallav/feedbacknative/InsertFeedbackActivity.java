@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -164,6 +165,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
 
                 Intent intObj = new Intent(InsertFeedbackActivity.this,MyFeedbackActivity.class);
                 //  intObj.putExtra("Username", userNameET.getText().toString());
+                finish();
                 startActivity(intObj);
             }else{
 
