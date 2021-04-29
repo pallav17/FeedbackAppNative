@@ -73,7 +73,6 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 case R.id.navigation_dashboard:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
-
                     startActivity(InsertFeedback);
                     return true;
 
@@ -192,6 +191,8 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
         // specify an adapter (see also next example)
 
+        int totalCount = arrData.size();
+
         mAdapter = new FeedbackListAdapter(arrData);
 
         Collections.reverse(arrData);
@@ -212,7 +213,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 try {
                     data = NetworkUtil.getResponse(urls[0]);
-                    Log.d("Magaj ni patar fadai gayi", " "+data);
+                    Log.d("Data received", " "+data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -164,6 +164,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Feedback send successfully ", Toast.LENGTH_LONG).show();
 
                 Intent intObj = new Intent(InsertFeedbackActivity.this,MyFeedbackActivity.class);
+                 intObj.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //  intObj.putExtra("Username", userNameET.getText().toString());
                 finish();
                 startActivity(intObj);

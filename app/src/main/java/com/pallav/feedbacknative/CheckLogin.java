@@ -247,61 +247,41 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
         }
 
-
-               /* //Once WebService returns response
-                protected void onPostExecute(Boolean result) {
-                    //Make Progress Bar invisible
-                    webservicePG.setVisibility(View.INVISIBLE);
-                    Intent intObj = new Intent(CheckLogin.this,MainActivity.class);
-
-                    //Error status is false
-                    if(!errored){
-                        //Based on Boolean value returned from WebService
-                        Log.w("myTag",Boolean.toString(loginStatus));
-
-                       // Log.w("myTag",Boolean.toString(result));
-                        if(loginStatus){
-                            //Navigate to Home Screen
-                            startActivity(intObj);
-                        }else{
-                            //Set Error message
-                            statusTV.setText("Login Failed, try again");
-                        }
-                        //Error status is true
-                    }else{
-                        statusTV.setText("Error occured in invoking webservice");
-                    }
-                    //Re-initialize Error Status to False
-                    errored = false;
-                }*/
-
-
-
         //Once WebService returns response
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             //Make Progress Bar invisible
+            try {
+                Thread.sleep(2000);
+                result = loginStatus;
+                webservicePG.setVisibility(View.INVISIBLE);
 
-            result = loginStatus;
-            webservicePG.setVisibility(View.INVISIBLE);
 
-            //Based on Boolean value returned from WebService
-            Log.w("myTag",Boolean.toString(loginStatus));
-            if(result){
-                //Navigate to Home Screen
-                Intent intObj = new Intent(CheckLogin.this,MyFeedbackActivity.class);
-                intObj.putExtra("Username", userNameET.getText().toString());
-                startActivity(intObj);
-                finish();
+                //Based on Boolean value returned from WebService
+                Log.w("myTag", Boolean.toString(loginStatus));
+                if (result) {
+                    //Navigate to Home Screen
+                    Intent intObj = new Intent(CheckLogin.this, MyFeedbackActivity.class);
+                    intObj.putExtra("Username", userNameET.getText().toString());
+                    startActivity(intObj);
+                    finish();
 
-                new SetSharedPreferences().setValue(CheckLogin.this, "Username", userNameET.getText().toString());
-                new SetSharedPreferences().setValue(CheckLogin.this, "Password" ,passWordET.getText().toString());
-                new SetSharedPreferences().setBool(CheckLogin.this, "isLoggedIn" , true);
 
-            }else{
-                //Set Error message
-                statusTV.setTextColor(Color.parseColor("#FF0000"));
-                statusTV.setText("Login Failed, Invalid Credentials");
+                    new SetSharedPreferences().setValue(CheckLogin.this, "Username", userNameET.getText().toString());
+                    new SetSharedPreferences().setValue(CheckLogin.this, "Password", passWordET.getText().toString());
+                    new SetSharedPreferences().setBool(CheckLogin.this, "isLoggedIn", true);
+                } else {
+                    //Set Error message
+                    statusTV.setTextColor(Color.parseColor("#FF0000"));
+                    statusTV.setText("Login Failed, Invalid Credentials");
+                }
+
+            }
+            catch (InterruptedException e)
+            {
+                statusTV.setText("Sorry Login Failed");
+                return;
+
             }
             //Error status is true
             return;

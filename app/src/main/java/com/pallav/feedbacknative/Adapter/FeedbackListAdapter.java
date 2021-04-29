@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.MyViewHolder> {
     private ArrayList<HashMap<String, String>> arrData;
     private final int limit = 20;
+    private int newCount,totalCount;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -77,13 +78,15 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     @Override
     public int getItemCount() {
 
-        if (arrData.size() > limit) {
+       /* if (arrData.size() > limit) {
 
             return limit;
         } else {
 
-            return arrData.size();
-        }
+
+        }*/
+
+        return arrData.size();
     }
 
 }
