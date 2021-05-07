@@ -31,59 +31,56 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 
-public class LoginWebservice   {
+public class LoginWebservice {
 
-        //Namespace of the Webservice - can be found in WSDL
-        private static String NAMESPACE = "http://tempuri.org/";
-
-            private static String httpsURL;
-        //Webservice URL - WSDL File location
-
-        private static String URL = Constant.CLOUDURL+"Webservice1.asmx?WSDL";//Make sure you changed IP address
-
-        //SOAP Action URI again Namespace + Web method name
-        private static String SOAP_ACTION = "http://tempuri.org/";
+    //Namespace of the Webservice - can be found in WSDL
+    private static String NAMESPACE = "http://tempuri.org/";
 
 
-          splashActivity sp = new splashActivity();
+    //Webservice URL - WSDL File location
+
+    private static String URL = Constant.TESTURL + "Webservice1.asmx?WSDL";//Make sure you changed IP address
+
+    //SOAP Action URI again Namespace + Web method name
+    private static String SOAP_ACTION = "http://tempuri.org/";
 
 
+    splashActivity sp = new splashActivity();
 
 
-        public static boolean invokeLoginWS(String userName,String passWord, String webMethName) {
-            boolean loginStatus = false;
-            boolean result = false;
+    public static String invokeLoginWS(String userName, String passWord, String webMethName) {
+        boolean loginStatus = false;
+      String result = null;
 
-            // Create request
-            SoapObject loginRequest = new SoapObject(NAMESPACE, webMethName);
-            // Property which holds input parameters
-            PropertyInfo unamePI = new PropertyInfo();
-            PropertyInfo passPI = new PropertyInfo();
-            // Set Username
-            unamePI.setName("Email");
-            // Set Value
-            unamePI.setValue(userName);
-            // Set dataType
-            unamePI.setType(String.class);
-            // Add the property to request object
-            loginRequest.addProperty(unamePI);
-            //Set Password
-            passPI.setName("Password");
-            //Set dataType
-            passPI.setValue(passWord);
-            //Set dataType
-            passPI.setType(String.class);
-            //Add the property to request object
-            loginRequest.addProperty(passPI);
+        // Create request
+        SoapObject loginRequest = new SoapObject(NAMESPACE, webMethName);
+        // Property which holds input parameters
+        PropertyInfo unamePI = new PropertyInfo();
+        PropertyInfo passPI = new PropertyInfo();
+        // Set Username
+        unamePI.setName("Email");
+        // Set Value
+        unamePI.setValue(userName);
+        // Set dataType
+        unamePI.setType(String.class);
+        // Add the property to request object
+        loginRequest.addProperty(unamePI);
+        //Set Password
+        passPI.setName("Password");
+        //Set dataType
+        passPI.setValue(passWord);
+        //Set dataType
+        passPI.setType(String.class);
+        //Add the property to request object
+        loginRequest.addProperty(passPI);
 
-          result = invokeApi(loginRequest,webMethName);
-
-
-            return result;
+        result = invokeApiResponse(loginRequest, webMethName);
 
 
-        }
+        return result;
 
+
+    }
 
 
     public static boolean invokeUpdatePasswordWS(String Email, String newPassWord, String webMethName) {
@@ -101,7 +98,7 @@ public class LoginWebservice   {
         // Set dataType
         EmailPI.setType(String.class);
         // Add the property to request object
-      updatePasswordRequest.addProperty(EmailPI);
+        updatePasswordRequest.addProperty(EmailPI);
 
         PropertyInfo newPwdPI = new PropertyInfo();
         // Set Username
@@ -114,14 +111,12 @@ public class LoginWebservice   {
         updatePasswordRequest.addProperty(newPwdPI);
         //Set Password
 
-        result = invokeApi(updatePasswordRequest,webMethName);
+        result = invokeApi(updatePasswordRequest, webMethName);
 
 
         return result;
 
     }
-
-
 
 
     public static boolean forgorPasswordWS(String Email, String webMethName) {
@@ -140,7 +135,7 @@ public class LoginWebservice   {
         // Add the property to request object
         forgotpassRequest.addProperty(EmailPI);
 
-        result = invokeApi(forgotpassRequest,webMethName);
+        result = invokeApi(forgotpassRequest, webMethName);
 
 
         return result;
@@ -168,7 +163,7 @@ public class LoginWebservice   {
         verifyRequest.addProperty(AccessCodePI);
         //Set Password
 
-        result = invokeApi(verifyRequest,webMethName);
+        result = invokeApi(verifyRequest, webMethName);
 
         return result;
 
@@ -206,14 +201,14 @@ public class LoginWebservice   {
         verifyRequest.addProperty(AccessCodePI);
 
         //Set Password
-        result = invokeApi(verifyRequest,webMethName);
+        result = invokeApi(verifyRequest, webMethName);
 
         return result;
 
     }
 
 
-    public static boolean invokeInsertFeedbackWS(String  Subject,String Recepient_Email,String Description, String Suggestion, String Email, String Rating, String webMethName)  {
+    public static boolean invokeInsertFeedbackWS(String Subject, String Recepient_Email, String Description, String Suggestion, String Email, String Rating, String webMethName) {
 
         boolean result = false;
 
@@ -251,14 +246,14 @@ public class LoginWebservice   {
         EmailPI.setName("Email");
         EmailPI.setValue(Email);
         EmailPI.setType(String.class);
-        insertfeedbackRequest .addProperty(EmailPI);
+        insertfeedbackRequest.addProperty(EmailPI);
 
         RatingPI.setName("Rating");
         RatingPI.setValue(Rating);
         RatingPI.setType(String.class);
-        insertfeedbackRequest .addProperty(RatingPI);
+        insertfeedbackRequest.addProperty(RatingPI);
 
-        result = invokeApi(insertfeedbackRequest,webMethName);
+        result = invokeApi(insertfeedbackRequest, webMethName);
 
 
         return result;
@@ -267,11 +262,7 @@ public class LoginWebservice   {
     }
 
 
-
-
-
-
-    public static boolean invokeSignupInsertUser(String  FirstName,String  LastName,String  Office,  String Email , String Password, String IsActive, String IsDelete, String webMethName)  {
+    public static boolean invokeSignupInsertUser(String FirstName, String LastName, String Office, String Email, String Password, String IsActive, String IsDelete, String webMethName) {
 
         boolean result = false;
 
@@ -323,7 +314,7 @@ public class LoginWebservice   {
         IsDeletePI.setType(String.class);
         InsertUserRequest.addProperty(IsDeletePI);
 
-        result = invokeApi(InsertUserRequest,webMethName);
+        result = invokeApi(InsertUserRequest, webMethName);
 
         return result;
 
@@ -331,8 +322,7 @@ public class LoginWebservice   {
     }
 
 
-
-    public  static String invokeDisplayFeedbackWS( String Email, String Token , String webMethName)    {
+    public static String invokeDisplayFeedbackWS(String Email, String Token, String webMethName) {
 
         boolean result = false;
         String Feedbacks;
@@ -356,62 +346,20 @@ public class LoginWebservice   {
         TokenPI.setType(String.class);
         DisplayFeedbackRequest.addProperty(TokenPI);
 
-        Feedbacks = invokeApiResponse(DisplayFeedbackRequest,webMethName);
+        Feedbacks = invokeApiResponse(DisplayFeedbackRequest, webMethName);
 
 
         return Feedbacks;
 
 
-
     }
 
 
-
-        public static boolean invokeApi(SoapObject request, String webMethName)
-
-        {
-           // httpsURL = splashActivity.cerurl+"Webservice1.asmx?WSDL";
-            boolean responseStatus = false;
-
-           SecureUrl.trustEveryone();
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                    SoapEnvelope.VER11);
-            envelope.dotNet = true;
-            // Set output SOAP object
-            envelope.setOutputSoapObject(request);
-
-
-            // Create HTTP call object
-            HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
-
-            try {
-                // Invoke web service
-                androidHttpTransport.call(SOAP_ACTION+webMethName, envelope);
-                // Get the response
-                SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
-                // Assign it to  boolean variable variable
-                responseStatus = Boolean.parseBoolean(response.toString());
-                Log.w("ResponseStatuslog",Boolean.toString(responseStatus));
-
-            } catch (Exception e) {
-                //Assign Error Status true in static variable 'errored'
-                // CheckDNLoginActivity.errored = true;
-                e.printStackTrace();
-            }
-            //Return booleam to calling object
-            return responseStatus;
-        }
-
-
-
-    public static String invokeApiResponse(SoapObject request, String webMethName)
-
-    {
-
-
+    public static boolean invokeApi(SoapObject request, String webMethName) {
+        // httpsURL = splashActivity.cerurl+"Webservice1.asmx?WSDL";
         boolean responseStatus = false;
-        String responseArray = null;
+
+
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                 SoapEnvelope.VER11);
         envelope.dotNet = true;
@@ -419,59 +367,17 @@ public class LoginWebservice   {
         envelope.setOutputSoapObject(request);
 
 
-        // AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
         // Create HTTP call object
-
         HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 
         try {
-
-            androidHttpTransport.call(SOAP_ACTION+webMethName, envelope);
-
-
-            Log.d("SOAP RESPONSE...............","This is response.............."+androidHttpTransport.responseDump);
-
-
+            // Invoke web service
+            androidHttpTransport.call(SOAP_ACTION + webMethName, envelope);
             // Get the response
-            // SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
-
-            SoapObject response = (SoapObject) envelope.bodyIn;
-
-            // SoapObject obj =(SoapObject) response.getProperty(0);
-
-           /* for(int i=0; i<obj.getPropertyCount(); i++)
-            {
-                int id= Integer.parseInt(obj.getProperty(i).toString());
-                //Do what you want
-            }*/
-
-
-
-
-
-            Log.d("SOAP RESPONSE...............","This is response.............."+response.toString());
-
-
-            if(response != null)
-            {
-                responseStatus = true;
-                responseArray = response.toString();
-
-                Log.d("Response,........................", responseArray);
-                JSONArray jarray =new JSONArray(responseArray);
-
-                Log.d("Response,........................", jarray.toString());
-
-                // System.out.println("*****JARRAY*****"+jArray);
-
-
-                Log.w("ResponseStatuslog",Boolean.toString(responseStatus));
-                Log.d("This is the response", jarray.toString() );
-            }
-
-
-
-
+            SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
+            // Assign it to  boolean variable variable
+            responseStatus = Boolean.parseBoolean(response.toString());
+            Log.w("ResponseStatuslog", Boolean.toString(responseStatus));
 
         } catch (Exception e) {
             //Assign Error Status true in static variable 'errored'
@@ -479,11 +385,47 @@ public class LoginWebservice   {
             e.printStackTrace();
         }
         //Return booleam to calling object
-        return responseArray;
+        return responseStatus;
     }
 
 
+    public static String invokeApiResponse(SoapObject request, String webMethName) {
+
+
+        // httpsURL = splashActivity.cerurl+"Webservice1.asmx?WSDL";
+        String responseStatus = null;
+
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                SoapEnvelope.VER11);
+        envelope.dotNet = true;
+        // Set output SOAP object
+        envelope.setOutputSoapObject(request);
+
+
+        // Create HTTP call object
+        HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+
+        try {
+            // Invoke web service
+            androidHttpTransport.call(SOAP_ACTION + webMethName, envelope);
+            // Get the response
+            SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
+            // Assign it to  boolean variable variable
+            responseStatus = response.toString();
+            Log.w("ResponseStatuslog", responseStatus);
+
+        } catch (Exception e) {
+            //Assign Error Status true in static variable 'errored'
+            // CheckDNLoginActivity.errored = true;
+            e.printStackTrace();
         }
+        //Return booleam to calling object
+        return responseStatus;
+
+    }
+
+}
 
 
 

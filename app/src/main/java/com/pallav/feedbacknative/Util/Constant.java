@@ -2,6 +2,7 @@ package com.pallav.feedbacknative.Util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.SearchView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -31,6 +32,8 @@ public class Constant {
 
 
   public static String CLOUDURL = "https://feedback-app.digital.schaeffler/";
+
+  public static String TESTURL = "https://www.as-mexico.com.mx/feedbackTest/";
 
   // public static HttpsURLConnection BASEURL = SecureUrl.setUpHttpsConnection(url);
 

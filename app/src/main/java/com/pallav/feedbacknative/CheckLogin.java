@@ -35,6 +35,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     EditText userNameET, passWordET,inputEmail;
     ProgressBar webservicePG;
     boolean loginStatus;
+    String loginWSResponse;
     String editTextPassword;
     boolean forgotpasswordOTP, forgotpasswordverifyOTP;
 
@@ -241,8 +242,10 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         @Override
         protected Boolean doInBackground(Void... voids) {
             //Call Web Method
-
-            loginStatus = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(),"getLogin");
+            String[] totalCount;
+           loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(),"getLogin");
+           totalCount = loginWSResponse.split(":");
+            loginStatus = Boolean.parseBoolean(totalCount[0]);
             return loginStatus;
 
         }

@@ -71,6 +71,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                     startActivity(MyFeedbacks);
                     return true;
 
+                case R.id.navigation_sendItems:
+                    Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
+                    finish();
+                    startActivity(SentItems);
+
                 case R.id.navigation_dashboard:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
                     startActivity(InsertFeedback);
@@ -125,7 +130,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         final String message = getintent.getStringExtra("Username");
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        url = NetworkUtil.buildURL(Constant.CLOUDURL +"WebService1.asmx/" + "TokenTest1DF?Email="
+        url = NetworkUtil.buildURL(Constant.TESTURL +"WebService1.asmx/" + "TokenTest1DF?Email="
                 + new SetSharedPreferences().getValue(MyFeedbackActivity.this, "Username")
                 + "&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallDisplayFeedback  task = new AsyncCallDisplayFeedback();
@@ -217,52 +222,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-               /* try{
 
-                    JSONArray jsonArray = new JSONArray(data);
-                    ArrayList<HashMap<String, String>> arrData = new ArrayList<>();
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        HashMap<String, String> map = new HashMap<>();
-                        try {
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            map.put("Subject", jsonObject.get("Subject").toString());
-                            map.put("Description", jsonObject.get("Description").toString());
-                            map.put("Suggestion", jsonObject.get("Suggestion").toString());
-                            map.put("Rating", jsonObject.get("Rating").toString());
-                            map.put("FirstName", jsonObject.get("FirstName").toString());
-                            map.put("LastName", jsonObject.get("LastName").toString());
-                            map.put("FeedbackDate", jsonObject.get("FeedbackDate").toString());
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        arrData.add(map);
-                    }
-
-                    int arraylength = jsonArray.length();
-                    FirstName = new String[arraylength];
-                    LastName = new String[arraylength];
-                    Subject = new String[arraylength];
-                    // posterUrl = new String[arraylength];
-                    for(int i =0; i < arraylength ; i++)
-                    {
-                        JSONObject jobj1 = jsonArray.getJSONObject(i);
-                      //  JSONObject jobj1 = jsonArray.getJSONObject(i);
-                      //  JSONObject jobj3 = jsonArray.getJSONObject(i);
-
-                        // JSONObject jobj3 = jobj2.getJSONObject("")
-                        FirstName[i] = jobj1.getString("FirstName");
-                        LastName[i] = jobj1.getString("LastName");
-                     Subject[i] = jobj1.getString("Subject");
-                        Log.w("First Name",FirstName[i]);
-                        Log.w("Last Name",LastName[i]);
-                        Log.w("Subject",Subject[i]);
-                    }*/
-
-               /* } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
                 Log.d("data", data);
                 return data;
                // LoginWebservice.invokeDisplayFeedbackWS("pallav.shah@schaeffler.com","af9bce267343ad72bd6abe7aff58edf2","TokenTest1DF" );
@@ -298,7 +258,6 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                 }*/
 
         @Override
-
             protected void onPostExecute(String result) {
 
             try{

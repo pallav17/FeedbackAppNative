@@ -12,7 +12,7 @@ public class NetworkUtil {
 
     public static URL buildURL(String reponseUrl) {
 
-        SecureUrl.trustEveryone();
+
         Uri uri = Uri.parse(reponseUrl);
         URL url = null;
 
@@ -30,7 +30,7 @@ public class NetworkUtil {
 
 public static String getResponse(URL buildUrl) throws IOException {
 
-        SecureUrl.trustEveryone();
+
     HttpURLConnection urlConnection = (HttpURLConnection) buildUrl.openConnection();
 
     try {
