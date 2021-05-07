@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_feedback_inbox);
                     return true;
 
+                case R.id.navigation_sendItems:
+                    mTextMessage.setText(R.string.title_sent_items);
+                    return true;
+
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_profile);
                     return true;

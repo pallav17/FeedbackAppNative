@@ -71,19 +71,20 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
                     startActivity(MyFeedbacks);
                     return true;
 
-                case R.id.navigation_sendItems:
-                    Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
-                    finish();
-                    startActivity(SentItems);
 
                 case R.id.navigation_dashboard:
                     Intent InsertFeedback = new Intent(MyFeedbackActivity.this, EmployeesActivity.class);
                     startActivity(InsertFeedback);
                     return true;
 
+                case R.id.navigation_sendItems:
+                    Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
+                    finish();
+                    startActivity(SentItems);
+                    return true;
+
                 case R.id.navigation_notifications:
                     Intent ProfileActivity = new Intent(MyFeedbackActivity.this, ProfileActivity.class);
-
                     startActivity(ProfileActivity);
                     return true;
 
