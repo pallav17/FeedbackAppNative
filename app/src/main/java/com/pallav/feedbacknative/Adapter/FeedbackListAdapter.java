@@ -66,9 +66,9 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         // - replace the contents of the view with that element
         holder.txtSubject.setText(arrData.get(position).get("Subject"));
         // holder.textView.setText(arrData.get(position).get("FirstName"));
-        holder.txt_like.setText(arrData.get(position).get("Description"));
-        holder.txt_suggestion.setText(arrData.get(position).get("Suggestion"));
-        holder.feedback_sender.setText(arrData.get(position).get("FirstName") + " " + arrData.get(position).get("LastName"));
+        holder.txt_like.setText(" "+arrData.get(position).get("Description"));
+        holder.txt_suggestion.setText(" "+arrData.get(position).get("Suggestion"));
+        holder.feedback_sender.setText("From: " + arrData.get(position).get("FirstName") + " " + arrData.get(position).get("LastName"));
         holder.txt_date.setText(arrData.get(position).get("FeedbackDate"));
 
         holder.ratingBar.setRating(Float.valueOf(arrData.get(position).get("Rating")));

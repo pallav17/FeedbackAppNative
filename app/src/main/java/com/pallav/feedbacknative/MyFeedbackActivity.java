@@ -79,7 +79,6 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 case R.id.navigation_sendItems:
                     Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
-                    finish();
                     startActivity(SentItems);
                     return true;
 

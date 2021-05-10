@@ -16,7 +16,7 @@
     <item
         android:id="@+id/navigation_sendItems"
         android:icon="@drawable/baseline_sentitems_24"
-        android:title="@string/title_feedback_inbox" />
+        android:title="@string/title_sent_items" />
 
     <item
         android:id="@+id/navigation_notifications"
