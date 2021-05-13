@@ -37,6 +37,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
     boolean loginStatus;
     String loginWSResponse;
     String editTextPassword;
+    int WScount, newFeedbacCount=0;
     boolean forgotpasswordOTP, forgotpasswordverifyOTP;
 
     Button btn_create_an_account, btn_forgot_password;
@@ -245,6 +246,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             String[] totalCount;
            loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(),"getLogin");
            totalCount = loginWSResponse.split(":");
+            WScount = Integer.parseInt(totalCount[1]);
             loginStatus = Boolean.parseBoolean(totalCount[0]);
             return loginStatus;
 
@@ -257,15 +259,21 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             try {
                 Thread.sleep(2000);
                 result = loginStatus;
-                webservicePG.setVisibility(View.INVISIBLE);
+
 
 
                 //Based on Boolean value returned from WebService
                 Log.w("myTag", Boolean.toString(loginStatus));
                 if (result) {
                     //Navigate to Home Screen
+                  int newFeedback = newFeedbackCheck(WScount);
                     Intent intObj = new Intent(CheckLogin.this, MyFeedbackActivity.class);
                     intObj.putExtra("Username", userNameET.getText().toString());
+
+                    if(newFeedback != WScount) {
+                        intObj.putExtra("newFeedback", newFeedback);
+                    }
+
                     startActivity(intObj);
                     finish();
 
@@ -290,6 +298,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             return;
         }
 
+
         @Override
         //Make Progress Bar visible
         protected void onPreExecute() {
@@ -302,12 +311,48 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         @Override
         protected void onProgressUpdate(Void... values) {
 
+            webservicePG.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
+       public int newFeedbackCheck(int WScount)
+        {
+            int current = new SetSharedPreferences().getInt(CheckLogin.this,"currentFeedbackCount");
+
+            if(WScount > current)
+            {
+            if(current < 0) {
+                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
+                return WScount;
+            }
+            else {
+                newFeedbacCount = WScount - current;
+
+                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
+                return newFeedbacCount;
+
+
+            }
+            }
+
+            else {
+                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
+                return WScount;
+            }
+
+
 
         }
 
 
 
+
     }
+
+
+
 
 }
 

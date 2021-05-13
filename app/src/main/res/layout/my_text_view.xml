@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="Like: Good"
             android:layout_marginTop="12dp"
-            android:textStyle="bold"
+
             android:layout_toRightOf="@+id/txt_like_text"
             android:layout_marginLeft="2dp"
             android:textSize="15dp"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Suggestion: NA"
-            android:textStyle="bold"
+
             android:layout_toRightOf="@+id/txt_suggestion_text"
             android:textSize="15dp"
 

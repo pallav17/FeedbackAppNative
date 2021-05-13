@@ -56,6 +56,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     URL url;
     BadgeDrawable badge;
     BottomNavigationView navView;
+    int newFeedbackCount = 0;
 
     private TextView mTextMessage;
 
@@ -110,7 +111,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         badge = navView.getOrCreateBadge(R.id.navigation_home);
         badge.setVisible(true);
-        badge.setNumber(25);
+
 
 
 
@@ -128,6 +129,9 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         //webView = (WebView)findViewById(R.id.webview);
         Intent getintent = getIntent();
         final String message = getintent.getStringExtra("Username");
+     newFeedbackCount  = getintent.getIntExtra("newFeedback",0);
+        badge.setNumber(newFeedbackCount);
+
 //     Log.e("Email",message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
         url = NetworkUtil.buildURL(Constant.TESTURL +"WebService1.asmx/" + "TokenTest1DF?Email="
