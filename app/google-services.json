@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "97190209248",
+    "firebase_url": "https://schaeffler-feedback-app.firebaseio.com",
+    "project_id": "schaeffler-feedback-app",
+    "storage_bucket": "schaeffler-feedback-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97190209248:android:c8db11a01eb53978ebd285",
+        "android_client_info": {
+          "package_name": "com.pallav.feedbacknative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97190209248-a48l7h3ip1a6eqhds52l9pu9sufj5lbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1pyYIs8-VnHaHoeZRjq8ej6JFEWTKGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97190209248-a48l7h3ip1a6eqhds52l9pu9sufj5lbd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97190209248-bn3g1nnvpq43g29mbgek2o12jcrh9lmd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.schaeffler.Feedbacks"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97190209248:android:54b992f763842d6bebd285",
+        "android_client_info": {
+          "package_name": "com.webview.pallav.webview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97190209248-a48l7h3ip1a6eqhds52l9pu9sufj5lbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1pyYIs8-VnHaHoeZRjq8ej6JFEWTKGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97190209248-a48l7h3ip1a6eqhds52l9pu9sufj5lbd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97190209248-bn3g1nnvpq43g29mbgek2o12jcrh9lmd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.schaeffler.Feedbacks"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

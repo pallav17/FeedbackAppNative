@@ -8,10 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
-
 import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +17,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.*;
-import com.pallav.feedbacknative.Util.GetApi;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
 
 public class CheckLogin extends AppCompatActivity implements View.OnClickListener {
@@ -237,17 +239,38 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    public class AsyncCallWS extends AsyncTask<Void, Void, Boolean>
-
-    {
+    public class AsyncCallWS extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... voids) {
             //Call Web Method
             String[] totalCount;
-           loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(),"getLogin");
-           totalCount = loginWSResponse.split(":");
-            WScount = Integer.parseInt(totalCount[1]);
-            loginStatus = Boolean.parseBoolean(totalCount[0]);
+            loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(), "getLogin");
+            if (loginWSResponse.contains("True")) {
+                totalCount = loginWSResponse.split(":");
+                WScount = Integer.parseInt(totalCount[1]);
+                loginStatus = Boolean.parseBoolean(totalCount[0]);
+                //UpdatedeviceToken(userNameET.getText().toString());
+
+
+                FirebaseMessaging.getInstance().getToken()
+                        .addOnCompleteListener(new OnCompleteListener<String>() {
+                            @Override
+                            public void onComplete(@NonNull Task<String> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.w("TOKEN MSG", "Fetching FCM registration token failed", task.getException());
+                                    return ;
+                                }
+
+                                // Get new FCM registration token
+                                String token = task.getResult();
+
+                                // Log and toast
+                                // String msg = getString(R.string.msg_token_fmt, token);
+                                // Log.d(TAG, msg);
+                                Toast.makeText(CheckLogin.this, token, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
             return loginStatus;
 
         }
@@ -261,16 +284,15 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
                 result = loginStatus;
 
 
-
                 //Based on Boolean value returned from WebService
                 Log.w("myTag", Boolean.toString(loginStatus));
                 if (result) {
                     //Navigate to Home Screen
-                  int newFeedback = newFeedbackCheck(WScount);
+                    int newFeedback = newFeedbackCheck(WScount);
                     Intent intObj = new Intent(CheckLogin.this, MyFeedbackActivity.class);
                     intObj.putExtra("Username", userNameET.getText().toString());
 
-                    if(newFeedback != WScount) {
+                    if (newFeedback != WScount) {
                         intObj.putExtra("newFeedback", newFeedback);
                     }
 
@@ -287,9 +309,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
                     statusTV.setText("Login Failed, Invalid Credentials");
                 }
 
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 statusTV.setText("Sorry Login Failed");
                 return;
 
@@ -315,33 +335,33 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         }
 
 
+        public int newFeedbackCheck(int WScount) {
+            int current = new SetSharedPreferences().getInt(CheckLogin.this, "currentFeedbackCount");
+
+            if (WScount > current) {
+                if (current < 0) {
+                    new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
+                    return WScount;
+                } else {
+                    newFeedbacCount = WScount - current;
+
+                    new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
+                    return newFeedbacCount;
 
 
-       public int newFeedbackCheck(int WScount)
-        {
-            int current = new SetSharedPreferences().getInt(CheckLogin.this,"currentFeedbackCount");
-
-            if(WScount > current)
-            {
-            if(current < 0) {
-                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
-                return WScount;
-            }
-            else {
-                newFeedbacCount = WScount - current;
-
-                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
-                return newFeedbacCount;
-
-
-            }
-            }
-
-            else {
-                new SetSharedPreferences().setInt(CheckLogin.this,"currentFeedbackCount",WScount);
+                }
+            } else {
+                new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
                 return WScount;
             }
 
+
+        }
+
+        private boolean UpdatedeviceToken(String email) {
+
+            return true;
+        }
 
 
         }
@@ -354,5 +374,5 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
 
 
-}
+
 

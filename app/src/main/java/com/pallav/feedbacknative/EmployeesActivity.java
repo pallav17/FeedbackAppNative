@@ -52,7 +52,6 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         actionbar.setLogo(R.drawable.actionbar_logo);
         actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
-
         //callWebServiceForGetEmployeesData();
         URL url = NetworkUtil.buildURL(Constant.CLOUDURL +"WebService1.asmx/" + "TokenTest2AU?Email="
                 + new SetSharedPreferences().getValue(EmployeesActivity.this, "Username")
@@ -230,7 +229,6 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
-
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {

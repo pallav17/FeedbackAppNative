@@ -1,10 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.microsoft.appcenter:appcenter:3.2.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9c220c615efc00eeae00b66437d0e0a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9c220c615efc00eeae00b66437d0e0a/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e7050bbfa2b91afffeb6e8e91a9f19c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aeb2651a6ffec415973a320d688d2b14/jetified-appcenter-3.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aeb2651a6ffec415973a320d688d2b14/jetified-appcenter-3.2.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aeb2651a6ffec415973a320d688d2b14/jetified-appcenter-3.2.2/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.appcenter/appcenter/3.2.2/e379ff3da0a996269c04611af98ff76614b2db5e/appcenter-3.2.2-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.appcenter/appcenter/3.2.2/178553e07e23f2b17a37f77c721d1f3381380c54/appcenter-3.2.2-sources.jar!/" />
     </SOURCES>

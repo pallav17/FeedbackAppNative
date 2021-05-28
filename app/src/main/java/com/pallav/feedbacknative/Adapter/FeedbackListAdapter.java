@@ -70,7 +70,6 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         holder.txt_suggestion.setText(" "+arrData.get(position).get("Suggestion"));
         holder.feedback_sender.setText("From: " + arrData.get(position).get("FirstName") + " " + arrData.get(position).get("LastName"));
         holder.txt_date.setText(arrData.get(position).get("FeedbackDate"));
-
         holder.ratingBar.setRating(Float.valueOf(arrData.get(position).get("Rating")));
     }
 

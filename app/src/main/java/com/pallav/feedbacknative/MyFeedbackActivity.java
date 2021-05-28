@@ -142,8 +142,6 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
     // callWebServiceForGetData();
 
-
-
         AppCenter.start(getApplication(), "98c6eadb-92bd-47cd-8e9d-2a86dc1530fa",
                 Analytics.class, Crashes.class);
 
