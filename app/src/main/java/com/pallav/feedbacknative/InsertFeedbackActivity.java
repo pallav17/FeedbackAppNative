@@ -22,7 +22,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pallav.feedbacknative.Util.Constant;
+import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
+
+import java.net.URL;
 
 
 public class InsertFeedbackActivity extends AppCompatActivity {
@@ -119,32 +123,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
         }
 
 
-               /* //Once WebService returns response
-                protected void onPostExecute(Boolean result) {
-                    //Make Progress Bar invisible
-                    webservicePG.setVisibility(View.INVISIBLE);
-                    Intent intObj = new Intent(CheckLogin.this,MainActivity.class);
 
-                    //Error status is false
-                    if(!errored){
-                        //Based on Boolean value returned from WebService
-                        Log.w("myTag",Boolean.toString(loginStatus));
-
-                       // Log.w("myTag",Boolean.toString(result));
-                        if(loginStatus){
-                            //Navigate to Home Screen
-                            startActivity(intObj);
-                        }else{
-                            //Set Error message
-                            statusTV.setText("Login Failed, try again");
-                        }
-                        //Error status is true
-                    }else{
-                        statusTV.setText("Error occured in invoking webservice");
-                    }
-                    //Re-initialize Error Status to False
-                    errored = false;
-                }*/
 
 
 
@@ -159,6 +138,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
 
             Log.w("myTag",Boolean.toString(sendFeedbackStatus));
             if(result){
+                SendPushNotification();
                 Log.d("Insert Feedback", " Feedback send successfully");
 
                 Toast.makeText(getApplicationContext(), "Feedback send successfully ", Toast.LENGTH_LONG).show();
@@ -170,7 +150,7 @@ public class InsertFeedbackActivity extends AppCompatActivity {
                 startActivity(intObj);
             }else{
 
-                Log.d("Insert Feedback","Login Failed, try again");
+                Log.d("Insert Feedback"," Failed, try again");
             }
             //Error status is true
             return;
@@ -199,6 +179,37 @@ public class InsertFeedbackActivity extends AppCompatActivity {
         return true;
     }
 
+    private void SendPushNotification() {
 
+        URL url = NetworkUtil.buildURL(Constant.TESTURL +"WebService1.asmx/" + "pushNotify?Email="
+                +getIntent().getStringExtra("Email"));
+
+        AsyncPushNotification ta = new AsyncPushNotification()  ;
+        ta.execute(url);
+
+        Toast.makeText(InsertFeedbackActivity.this,"Notification Sent", Toast.LENGTH_SHORT).show();
+    }
+
+}
+
+
+ class AsyncPushNotification extends AsyncTask<URL, Void, String> {
+
+    @Override
+    protected String doInBackground(URL... urls) {
+        String data = null;
+
+        try {
+            data = NetworkUtil.getResponse(urls[0]);
+            Log.d("Data received", " "+data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Log.d("data", data);
+        return data;
+
+
+    }
 
 }

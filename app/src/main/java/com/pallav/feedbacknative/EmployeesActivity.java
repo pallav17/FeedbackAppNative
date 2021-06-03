@@ -53,7 +53,7 @@ public class EmployeesActivity extends AppCompatActivity implements Services.web
         actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         //callWebServiceForGetEmployeesData();
-        URL url = NetworkUtil.buildURL(Constant.CLOUDURL +"WebService1.asmx/" + "TokenTest2AU?Email="
+        URL url = NetworkUtil.buildURL(Constant.TESTURL +"WebService1.asmx/" + "TokenTest2AU?Email="
                 + new SetSharedPreferences().getValue(EmployeesActivity.this, "Username")
                 + "&Token=af9bce267343ad72bd6abe7aff58edf2");
         AsyncCallGetEMPList  task = new AsyncCallGetEMPList();

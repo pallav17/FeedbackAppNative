@@ -2,6 +2,7 @@ package com.pallav.feedbacknative;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.CursorJoiner;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -27,23 +28,33 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.pallav.feedbacknative.Util.Constant;
+import com.pallav.feedbacknative.Util.MyFirebaseMessagingService;
+import com.pallav.feedbacknative.Util.NetworkUtil;
 import com.pallav.feedbacknative.Util.SetSharedPreferences;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.net.URL;
 
 public class CheckLogin extends AppCompatActivity implements View.OnClickListener {
 
     static boolean errored = false;
     Button b;
     TextView statusTV;
-    EditText userNameET, passWordET,inputEmail;
+    EditText userNameET, passWordET, inputEmail;
     ProgressBar webservicePG;
     boolean loginStatus;
     String loginWSResponse;
+    String deviceToken = null;
     String editTextPassword;
-    int WScount, newFeedbacCount=0;
+    int WScount, newFeedbacCount = 0;
     boolean forgotpasswordOTP, forgotpasswordverifyOTP;
 
     Button btn_create_an_account, btn_forgot_password;
-
+    MyFirebaseMessagingService firebaseService;
     private void initSetup() {
         btn_create_an_account = (Button) findViewById(R.id.btn_create_an_account);
         btn_forgot_password = (Button) findViewById(R.id.btn_forgot_password);
@@ -69,11 +80,12 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
 
-
         initSetup();
         IBAction();
 
         setUserPreferences();
+       deviceToken = MyFirebaseMessagingService.getDeviceToken();
+
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new
@@ -86,8 +98,8 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         statusTV = (TextView) findViewById(R.id.tv_result);
         //Button to trigger web service invocation
         b = (Button) findViewById(R.id.button1);
-        //Display progress bar until web service invocation completes
-        //Button Click Listener
+
+
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Check if text controls are not empty
@@ -112,13 +124,14 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         });
     }
 
+
     private void setUserPreferences() {
         SetSharedPreferences setSharedPreferences = new SetSharedPreferences();
         if (setSharedPreferences.getBool(CheckLogin.this, "isLoggedIn")) {
             userNameET.setText(setSharedPreferences.getValue(CheckLogin.this, "Username"));
             passWordET.setText(setSharedPreferences.getValue(CheckLogin.this, "Password"));
 
-            new Handler().postDelayed(new Runnable(){
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     /* Create an Intent that will start the Menu-Activity. */
@@ -142,7 +155,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         if (v == btn_create_an_account) {
             Intent i = new Intent(CheckLogin.this, RegistrationActivity.class);
             startActivity(i);
-        }else if (v == btn_forgot_password) {
+        } else if (v == btn_forgot_password) {
             alertForgotPassword();
         }
     }
@@ -154,7 +167,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         builder.setCancelable(false);
 
 // Set up the input
-       inputEmail = new EditText(this);
+        inputEmail = new EditText(this);
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         inputEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         builder.setView(inputEmail);
@@ -165,23 +178,16 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             public void onClick(DialogInterface dialog, int which) {
 
 
+                forgotpasswordOTP = LoginWebservice.forgorPasswordWS(inputEmail.getText().toString(), "ForgotPassword");
 
+                Log.d("Forgot Password Response Coming inn", Boolean.toString(forgotpasswordOTP));
 
-               forgotpasswordOTP = LoginWebservice.forgorPasswordWS(inputEmail.getText().toString(),"ForgotPassword");
-
-                Log.d("Forgot Password Response Coming inn", Boolean.toString( forgotpasswordOTP));
-
-                if(forgotpasswordOTP)
-                {
+                if (forgotpasswordOTP) {
                     Toast.makeText(getApplicationContext(), "Access Code sent successfully ", Toast.LENGTH_LONG).show();
                     alertConfirmOTP();
-                }
-
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), "Sorry, Invalid Email Address", Toast.LENGTH_LONG).show();
                 }
-
 
 
                 dialog.cancel();
@@ -197,6 +203,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         builder.show();
 
     }
+
     public void alertConfirmOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter OTP");
@@ -215,8 +222,7 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             public void onClick(DialogInterface dialog, int which) {
 
 
-
-                forgotpasswordverifyOTP = LoginWebservice.verifyForgotPasswordOTP(input.getText().toString(),inputEmail.getText().toString() , "VerifyforgotOtpNumber");
+                forgotpasswordverifyOTP = LoginWebservice.verifyForgotPasswordOTP(input.getText().toString(), inputEmail.getText().toString(), "VerifyforgotOtpNumber");
 
                 if (forgotpasswordverifyOTP) {
                     Intent i = new Intent(CheckLogin.this, UpdatePasswordActivity.class);
@@ -239,38 +245,31 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
     }
 
+
     public class AsyncCallWS extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... voids) {
             //Call Web Method
             String[] totalCount;
             loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(), "getLogin");
+
+            if(loginWSResponse == null)
+            {
+                try {
+                    loginWSResponse = LoginWebservice.invokeLoginWS(userNameET.getText().toString(), passWordET.getText().toString(), "getLogin");
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             if (loginWSResponse.contains("True")) {
                 totalCount = loginWSResponse.split(":");
                 WScount = Integer.parseInt(totalCount[1]);
                 loginStatus = Boolean.parseBoolean(totalCount[0]);
-                //UpdatedeviceToken(userNameET.getText().toString());
 
 
-                FirebaseMessaging.getInstance().getToken()
-                        .addOnCompleteListener(new OnCompleteListener<String>() {
-                            @Override
-                            public void onComplete(@NonNull Task<String> task) {
-                                if (!task.isSuccessful()) {
-                                    Log.w("TOKEN MSG", "Fetching FCM registration token failed", task.getException());
-                                    return ;
-                                }
-
-                                // Get new FCM registration token
-                                String token = task.getResult();
-
-                                // Log and toast
-                                // String msg = getString(R.string.msg_token_fmt, token);
-                                // Log.d(TAG, msg);
-                                Toast.makeText(CheckLogin.this, token, Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
+
             return loginStatus;
 
         }
@@ -280,14 +279,16 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
             super.onPostExecute(result);
             //Make Progress Bar invisible
             try {
-                Thread.sleep(2000);
+
                 result = loginStatus;
 
 
                 //Based on Boolean value returned from WebService
                 Log.w("myTag", Boolean.toString(loginStatus));
                 if (result) {
+                    //Thread.sleep(4000);
                     //Navigate to Home Screen
+                    deviceToken = MyFirebaseMessagingService.getDeviceToken();
                     int newFeedback = newFeedbackCheck(WScount);
                     Intent intObj = new Intent(CheckLogin.this, MyFeedbackActivity.class);
                     intObj.putExtra("Username", userNameET.getText().toString());
@@ -303,13 +304,15 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
                     new SetSharedPreferences().setValue(CheckLogin.this, "Username", userNameET.getText().toString());
                     new SetSharedPreferences().setValue(CheckLogin.this, "Password", passWordET.getText().toString());
                     new SetSharedPreferences().setBool(CheckLogin.this, "isLoggedIn", true);
+
+                    UpdatedeviceToken();
                 } else {
                     //Set Error message
                     statusTV.setTextColor(Color.parseColor("#FF0000"));
                     statusTV.setText("Login Failed, Invalid Credentials");
                 }
 
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 statusTV.setText("Sorry Login Failed");
                 return;
 
@@ -335,42 +338,83 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
         }
 
 
-        public int newFeedbackCheck(int WScount) {
-            int current = new SetSharedPreferences().getInt(CheckLogin.this, "currentFeedbackCount");
-
-            if (WScount > current) {
-                if (current < 0) {
-                    new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
-                    return WScount;
-                } else {
-                    newFeedbacCount = WScount - current;
-
-                    new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
-                    return newFeedbacCount;
+    }
 
 
-                }
-            } else {
+    public int newFeedbackCheck(int WScount) {
+        int current = new SetSharedPreferences().getInt(CheckLogin.this, "currentFeedbackCount");
+
+        if (WScount > current) {
+            if (current < 0) {
                 new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
                 return WScount;
+            } else {
+                newFeedbacCount = WScount - current;
+
+                new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
+                return newFeedbacCount;
+
+
             }
-
-
+        } else {
+            new SetSharedPreferences().setInt(CheckLogin.this, "currentFeedbackCount", WScount);
+            return WScount;
         }
-
-        private boolean UpdatedeviceToken(String email) {
-
-            return true;
-        }
-
-
-        }
-
-
 
 
     }
 
+
+
+    private void UpdatedeviceToken() {
+
+
+
+
+        URL url = NetworkUtil.buildURL(Constant.TESTURL + "WebService1.asmx/" + "UpdateDeviceTokenID?Email="
+                + new SetSharedPreferences().getValue(CheckLogin.this, "Username")
+                + "&PhoneDeviceID=" + deviceToken);
+        AsyncUpdateToken ta = new AsyncUpdateToken();
+        ta.execute(url);
+
+        Toast.makeText(CheckLogin.this, deviceToken, Toast.LENGTH_LONG).show();
+    }
+
+    class AsyncUpdateToken extends AsyncTask<URL, Void, String> {
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            String data = null;
+
+            try {
+                data = NetworkUtil.getResponse(urls[0]);
+                Log.d("Data received", " " + data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Log.d("data", data);
+            return data;
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                String res = result.toString();
+                Log.e("Token update", "Token update:" + res);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
+}
 
 
 

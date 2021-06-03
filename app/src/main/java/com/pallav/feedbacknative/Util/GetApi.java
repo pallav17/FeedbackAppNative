@@ -28,7 +28,7 @@ public class GetApi {
 
     private static String NAMESPACE = "http://tempuri.org/";
     //Webservice URL - WSDL File location
-    private static String URL = "http://www.as-mexico.com.mx/feedback/Webservice1.asmx";//Make sure you changed IP address
+    private static String URL = "https://feedback-app.digital.schaeffler/qasfeedback/Webservice1.asmx";//Make sure you changed IP address
     //SOAP Action URI again Namespace + Web method name
     private static String SOAP_ACTION = "http://tempuri.org/";
     public static String responseJSON;

@@ -33,7 +33,7 @@ public class Constant {
 
   public static String CLOUDURL = "https://feedback-app.digital.schaeffler/";
 
-  public static String TESTURL = "https://www.as-mexico.com.mx/feedbackTest/";
+  public static String TESTURL = "https://feedback-app.digital.schaeffler/qasfeedback/";
 
   // public static HttpsURLConnection BASEURL = SecureUrl.setUpHttpsConnection(url);
 
