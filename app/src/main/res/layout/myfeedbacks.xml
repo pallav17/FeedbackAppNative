@@ -49,6 +49,7 @@
        android:layout_alignParentBottom="true"
        android:background="@color/colorWhite"
        app:itemIconTint="@color/colorGreen"
+       app:labelVisibilityMode="labeled"
        app:itemTextColor="@color/colorGreen"
        android:paddingBottom="5dp"
        app:layout_constraintBottom_toBottomOf="parent"

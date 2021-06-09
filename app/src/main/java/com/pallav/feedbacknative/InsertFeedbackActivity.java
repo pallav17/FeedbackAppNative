@@ -141,9 +141,9 @@ public class InsertFeedbackActivity extends AppCompatActivity {
                 SendPushNotification();
                 Log.d("Insert Feedback", " Feedback send successfully");
 
-                Toast.makeText(getApplicationContext(), "Feedback send successfully ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Thanks for your feedback", Toast.LENGTH_LONG).show();
 
-                Intent intObj = new Intent(InsertFeedbackActivity.this,MyFeedbackActivity.class);
+                Intent intObj = new Intent(InsertFeedbackActivity.this,SentItemsActivity.class);
                  intObj.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //  intObj.putExtra("Username", userNameET.getText().toString());
                 finish();

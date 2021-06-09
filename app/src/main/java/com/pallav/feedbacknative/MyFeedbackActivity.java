@@ -80,6 +80,7 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
 
                 case R.id.navigation_sendItems:
                     Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
+                    finish();
                     startActivity(SentItems);
                     return true;
 
@@ -322,6 +323,11 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_logout:
+
+                String pushKey = new SetSharedPreferences().getValue(MyFeedbackActivity.this, "Username");
+                UpdatedeviceToken();
+
+                new SetSharedPreferences().setValue(MyFeedbackActivity.this,pushKey,null);
                 new SetSharedPreferences().setValue(MyFeedbackActivity.this, "Username", "");
                 new SetSharedPreferences().setValue(MyFeedbackActivity.this, "Password" , "");
                 new SetSharedPreferences().setBool(MyFeedbackActivity.this, "isLoggedIn" , false);
@@ -334,6 +340,48 @@ public class MyFeedbackActivity extends AppCompatActivity implements Services.we
         return false;
     }
 
+    private void UpdatedeviceToken() {
 
+        URL url = NetworkUtil.buildURL(Constant.TESTURL + "WebService1.asmx/" + "UpdateDeviceTokenID?Email="
+                + new SetSharedPreferences().getValue(MyFeedbackActivity.this, "Username")
+                + "&PhoneDeviceID="+"");
+        AsyncDeleteToken ta = new AsyncDeleteToken();
+        ta.execute(url);
+    }
+
+    class AsyncDeleteToken extends AsyncTask<URL, Void, String> {
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            String data = null;
+
+            try {
+                data = NetworkUtil.getResponse(urls[0]);
+                Log.d("Data received", " " + data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Log.d("data", data);
+            return data;
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                String res = result.toString();
+                Log.e("Token update", "Token update:" + res);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
 
 }

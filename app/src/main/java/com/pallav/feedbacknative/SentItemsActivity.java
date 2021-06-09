@@ -1,16 +1,19 @@
 package com.pallav.feedbacknative;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pallav.feedbacknative.Adapter.FeedbackListAdapter;
 import com.pallav.feedbacknative.Adapter.SendItemsAdapter;
 import com.pallav.feedbacknative.Util.Constant;
@@ -29,12 +32,53 @@ import java.util.HashMap;
 public class SentItemsActivity extends AppCompatActivity {
 
     URL url;
-    @Override
+    BottomNavigationView navView;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent MyFeedbacks = new Intent(SentItemsActivity.this, MyFeedbackActivity.class);
+                    finish();
+                    startActivity(MyFeedbacks);
+                    return true;
+
+
+                case R.id.navigation_dashboard:
+                    Intent InsertFeedback = new Intent(SentItemsActivity.this, EmployeesActivity.class);
+                    finish();
+                    startActivity(InsertFeedback);
+                    return true;
+
+                case R.id.navigation_sendItems:
+                 /*   Intent SentItems = new Intent(MyFeedbackActivity.this,SentItemsActivity.class);
+                    startActivity(SentItems);*/
+                    return true;
+
+                case R.id.navigation_notifications:
+                    Intent ProfileActivity = new Intent(SentItemsActivity.this, ProfileActivity.class);
+                    startActivity(ProfileActivity);
+                    return true;
+
+            }
+            return false;
+        }
+    };
+
+
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sent_items);
+            navView = findViewById(R.id.nav_view);
+            navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        ActionBar actionbar = getSupportActionBar();
+
+            ActionBar actionbar = getSupportActionBar();
         getSupportActionBar().setTitle("");
         actionbar.setDisplayUseLogoEnabled(true);
         actionbar.setDisplayShowHomeEnabled(true);

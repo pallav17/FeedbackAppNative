@@ -2,6 +2,7 @@ package com.pallav.feedbacknative;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.CursorJoiner;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +41,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.net.URL;
+import java.util.Map;
+import java.util.Set;
 
 public class CheckLogin extends AppCompatActivity implements View.OnClickListener {
 
@@ -305,8 +310,16 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
                     new SetSharedPreferences().setValue(CheckLogin.this, "Password", passWordET.getText().toString());
                     new SetSharedPreferences().setBool(CheckLogin.this, "isLoggedIn", true);
 
-                    UpdatedeviceToken();
-                } else {
+
+                  String temp = new SetSharedPreferences().getValue(CheckLogin.this,userNameET.getText().toString());
+
+                        if (temp == null) {
+                            UpdatedeviceToken();
+                        }
+
+                }
+
+                   else {
                     //Set Error message
                     statusTV.setTextColor(Color.parseColor("#FF0000"));
                     statusTV.setText("Login Failed, Invalid Credentials");
@@ -368,14 +381,14 @@ public class CheckLogin extends AppCompatActivity implements View.OnClickListene
 
     private void UpdatedeviceToken() {
 
-
-
-
         URL url = NetworkUtil.buildURL(Constant.TESTURL + "WebService1.asmx/" + "UpdateDeviceTokenID?Email="
                 + new SetSharedPreferences().getValue(CheckLogin.this, "Username")
                 + "&PhoneDeviceID=" + deviceToken);
         AsyncUpdateToken ta = new AsyncUpdateToken();
         ta.execute(url);
+
+        String email = new SetSharedPreferences().getValue(CheckLogin.this, "Username");
+        new SetSharedPreferences().setValue(CheckLogin.this,email , deviceToken);
 
         Toast.makeText(CheckLogin.this, deviceToken, Toast.LENGTH_LONG).show();
     }

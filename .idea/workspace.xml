@@ -32,31 +32,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43d68f35-693b-4c04-9e15-517bd41ee9c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_directboot_22_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/Util/MyFirebaseMessagingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/FeedbackAppNative.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/FeedbackAppNative.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/CheckLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/CheckLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/EmployeesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/EmployeesActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/Util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/Util/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/Util/GetApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/Util/GetApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/MyFeedbackActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/MyFeedbackActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/SentItemsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/SentItemsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sent_items.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sent_items.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/myfeedbacks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/myfeedbacks.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +108,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\SHAHPLL\.android\avd\Android_9.avd" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-03T19:30:53.328597800Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-04T13:53:02.413881400Z" />
     <property name="ExportApk.ApkPath" value="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
@@ -133,12 +124,12 @@
     <property name="show.do.not.copy.http.proxy.settings.to.gradle" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\drawable" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\raw" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\app\main\assets" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\assets" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\java\com\pallav\feedbacknative\Util" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\xml" />
       <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\app" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.pallav.feedbacknative" />
@@ -147,12 +138,12 @@
       <recent name="com.pallav.feedbacknative.Util" />
       <recent name="com.pallav.feedbacknative.Adapter" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\assets" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\java\com\pallav\feedbacknative\Util" />
-      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\xml" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\drawable" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res\raw" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\app\main\assets" />
       <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\app" />
+      <recent name="C:\Users\SHAHPLL\AndroidStudioProjects\Official\FeedbackAppNative\app\src\main\res" />
     </key>
   </component>
   <component name="RunManager">
@@ -288,9 +279,11 @@
     </state>
     <state x="-720" y="379" key="#xdebugger.evaluate/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238859321" />
     <state x="1193" y="445" key="#xdebugger.evaluate/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622757730717" />
-    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1622749424163">
+    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1623267653248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623267653248" />
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1622809826097" />
     <state x="-1828" y="92" width="1736" height="856" key="AVDManager/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622234056878" />
     <state x="92" y="92" width="1736" height="856" key="AVDManager/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622749424163" />
     <state width="444" height="466" key="DebuggerActiveHint" timestamp="1622757429345">
@@ -298,50 +291,70 @@
     </state>
     <state width="444" height="466" key="DebuggerActiveHint/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622234973024" />
     <state width="444" height="466" key="DebuggerActiveHint/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622757429345" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1622759267563">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267563" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1622759267563">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267563" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1622759267563">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267563" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1622759267563">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267563" />
-    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1622759267564">
+    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1623273022524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022524" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.1.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892008" />
-    <state width="1877" height="282" key="GridCell.Tab.1.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267564" />
-    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1622759267564">
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.1.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.1.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267564" />
-    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1622759267563">
+    <state width="1877" height="282" key="GridCell.Tab.1.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.1.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892007" />
-    <state width="1877" height="282" key="GridCell.Tab.1.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267563" />
-    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1622759267564">
+    <state width="1877" height="282" key="GridCell.Tab.1.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1623273022523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623273022523" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1622819235023" />
     <state width="1877" height="282" key="GridCell.Tab.1.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238892008" />
-    <state width="1877" height="282" key="GridCell.Tab.1.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622759267564" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1622760158736" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1622238859214">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1622238859214" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622809641304">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622809641304" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -381,16 +394,6 @@
           <line>140</line>
           <option name="timeStamp" value="92" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/SentItemsActivity.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
           <line>209</line>
@@ -399,32 +402,32 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
           <line>208</line>
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="196" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
-          <line>187</line>
-          <option name="timeStamp" value="197" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/InsertFeedbackActivity.java</url>
-          <line>190</line>
-          <option name="timeStamp" value="198" />
+          <option name="timeStamp" value="206" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/CheckLogin.java</url>
-          <line>255</line>
-          <option name="timeStamp" value="201" />
+          <line>316</line>
+          <option name="timeStamp" value="207" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/CheckLogin.java</url>
-          <line>264</line>
-          <option name="timeStamp" value="202" />
+          <line>315</line>
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/CheckLogin.java</url>
+          <line>313</line>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/MyFeedbackActivity.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/pallav/feedbacknative/MyFeedbackActivity.java</url>
+          <line>375</line>
+          <option name="timeStamp" value="217" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

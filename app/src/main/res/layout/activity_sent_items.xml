@@ -50,6 +50,7 @@
         android:background="@color/colorWhite"
         app:itemIconTint="@color/colorGreen"
         app:itemTextColor="@color/colorGreen"
+        app:labelVisibilityMode="labeled"
         android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
